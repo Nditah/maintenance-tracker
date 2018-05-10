@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Maintenance Tracker :: Signup </title>
+    <meta name="description" content="Maintenance Tracker App is an application that 
+provides users with the ability to reach out to operations or repairs department 
+regarding repair or maintenance requests and monitor the status of their request.">
+    <meta name="author" content="Nditah">
+    <link rel="icon" href="./images/logo.png" sizes="16x16" type="image/png">
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <section>
+            <div class="container color-dark">
+                <div class="col">
+                    <h1> :: MAINTENANCE TRACKER :: </h1>
+                </div>
+            </div>
+
+    <div class="container color-light">
+
+
+        <div class="col">
+
+            <form method="POST" action="index.html">
+                <p class="sm">Login with your email and password</p>
+                <input type="text" class="txt" name="firstName" id="firstName" placeholder="First Name">
+                <input type="text" class="txt" name="lastName" id="lastName" placeholder="Last Name">
+                <input type="text" class="txt" name="phone" id="phone" placeholder="Phone">
+                <textarea class="txt" name="address" id="address" placeholder="Address"></textarea>
+                <select class="txt" name="service" id="service">
+                    <option value="" disabled selected>Service Tier</option>
+                    <option value="Basic">Basic Services</option>
+                    <option value="Standard">Standard Services</option>
+                    <option value="Premium">Premium Services</option>
+                </select>
+                <input type="email" class="txt" name="email" id="email" placeholder="Email">
+                <input type="password" class="txt" name="password" id="password" placeholder="Password">
+                <input type="password" class="txt" name="password2" id="password2" placeholder="Confirm Password">
+                <button type="submit" class="btn" value="Signup">Signup</button>
+                <p>Already have an account? &nbsp; <a href="index.html"> Login</a></p>
+            </form>
+
+        </div>
+
+
+    </div>
+    </section>
+    <script scr="script.js"></script>
+</body>
+
+</html>

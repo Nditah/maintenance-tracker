@@ -1,0 +1,89 @@
+.container {
+    display: grid;
+    grid-template-columns: 60% auto;
+}
+
+.col {
+    padding: .4em 1.3em;
+}
+.color-dark {
+    background: #2885C4;
+}
+.color-light {
+    background: #57B3F1;
+}
+
+input.txt {
+    border: 0;
+    padding: 1em;
+    width: 80%;
+    margin-bottom: 2em;
+}
+
+input.search {
+    width: 130px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('./images/search-circle.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 10px 15px 10px 40px;
+    -webkit-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+}
+
+input.search:focus {
+    width: 100%;
+}
+
+button.btn {
+    border: 0;
+    display:block;
+    padding:1em 3em;
+    background:#A5F883;
+    color:#003A61;
+    margin-bottom:1em;
+    cursor:pointer;
+}
+
+textarea.txt {
+    border: 0;
+    padding: 1em;
+    width: 80%;
+    margin-bottom: 2em;
+}
+
+select.txt {
+    border: 0;
+    padding: 1em;
+    width: 85%;
+    margin-bottom: 2em;
+}
+
+.life-container {
+    background:#3FA0E1;
+    padding:.5em;
+   /* font-weight:bold;
+    cursor:pointer; */
+}
+
+#lifeContainer
+{                
+   overflow: hidden; 
+}
+
+#lifeContent
+{
+    height:300px;
+    position: relative;
+    overflow: auto; 
+}
+
+.status{
+    color: yellow;
+}
+
+
