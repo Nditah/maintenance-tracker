@@ -52,13 +52,14 @@ regarding repair or maintenance requests and monitor the status of their request
         <div class="container color-light">
             <div class="col" id="lifeContainer">
                 <table class="life-container" width="100%">
-                    <tr>
-                        <th width="10%">ID</th>
-                        <th width="15%">Date</th>
-                        <th width="20%">User</th>
-                        <th width="40%">Subject </th>
-                        <th width="15%">Status</th>
-                    </tr>
+
+            <tr>
+                <th width="10%"><a href="#" class="sort">ID <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
+                <th width="15%"><a href="#" class="sort">Date <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
+                <th width="20%"><a href="#" class="sort">User <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
+                <th width="40%"><a href="#" class="sort">Subject <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
+                <th width="15%"><a href="#" class="sort">Status <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
+            </tr>
                     <tr>
                         <td colspan=5><input type="text" name="search" id="search" class="search" placeholder="Search.."></td>
                     </tr>
@@ -73,9 +74,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td width="40%">
                                             <a href="admin.html?id=1">Wireless Network is faulty</a>
                                         </td>
-                                        <td width="15%">
-                                            <span class="status">Pending</span>
-                                        </td>
+                                        <td width="15%"><button class="status-approved">Approved</button></td>
                                     </tr>
                                     <tr>
                                         <td>101</td>
@@ -84,9 +83,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>
                                             <a href="admin.html?id=1">Inverter is faulty</a>
                                         </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
+                                        <td><button class="status-pending">Pending</button></td>
                                     </tr>
                                     <tr>
                                         <td>101</td>
@@ -95,9 +92,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>
                                             <a href="admin.html?id=1">Poor Connectivity</a>
                                         </td>
-                                        <td>
-                                            <span class="status">Accepted</span>
-                                        </td>
+                                        <td><button class="status-pending">Pending</button></td>
                                     </tr>
                                     <tr>
                                         <td>101</td>
@@ -106,9 +101,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>
                                             <a href="admin.html?id=1">Powerplant Overheating</a>
                                         </td>
-                                        <td>
-                                            <span class="status">Accepted</span>
-                                        </td>
+                                        <td><button class="status-rejected">Rejected</button></td>
                                     </tr>
                                     <tr>
                                         <td>101</td>
@@ -117,9 +110,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>
                                             <a href="admin.html?id=1">Generator is noisy</a>
                                         </td>
-                                        <td>
-                                            <span class="status">Rejected</span>
-                                        </td>
+                                        <td><button class="status-rejected">Rejected</button></td>
                                     </tr>
                                     <tr>
                                         <td>101</td>
@@ -128,9 +119,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>
                                             <a href="admin.html?id=1">Wireless Network is faulty</a>
                                         </td>
-                                        <td>
-                                            <span class="status">Rejected</span>
-                                        </td>
+                                        <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
                                     <tr>
                                         <td>101</td>
@@ -139,9 +128,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>
                                             <a href="admin.html?id=1">Monitor Blackout</a>
                                         </td>
-                                        <td>
-                                            <span class="status">Resolved</span>
-                                        </td>
+                                        <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
                                     <tr>
                                         <td>101</td>
@@ -150,9 +137,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>
                                             <a href="admin.html?id=1">Crashed Harddrive</a>
                                         </td>
-                                        <td>
-                                            <span class="status">Resolved</span>
-                                        </td>
+                                        <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
                                     <tr>
                                         <td>101</td>
@@ -161,9 +146,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>
                                             <a href="admin.html?id=1">Burned Charger</a>
                                         </td>
-                                        <td>
-                                            <span class="status">Resolved</span>
-                                        </td>
+                                        <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
                                     <tr>
                                         <td>101</td>
@@ -172,9 +155,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>
                                             <a href="admin.html?id=1">Adapter is faulty</a>
                                         </td>
-                                        <td>
-                                            <span class="status">Resolved</span>
-                                        </td>
+                                        <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
                                     <tr>
                                         <td>101</td>
@@ -183,9 +164,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>
                                             <a href="admin.html?id=1">Wireless Network is faulty</a>
                                         </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
+                                        <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
                                 </table>
                             </div>
