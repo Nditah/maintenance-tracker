@@ -1,0 +1,14 @@
+{
+  "name": "mt_api",
+  "version": "1.0.0",
+  "description": "Maintenance Ticket API",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "Nditah",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
