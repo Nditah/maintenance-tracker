@@ -14,4 +14,4 @@ status of their request.
 
 # Link
 
-https://nditah.github.io/maintenance-tracker/index.html
+https://nditah.github.io/maintenance-tracker/ui/index.html
