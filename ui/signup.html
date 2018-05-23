@@ -57,15 +57,15 @@ regarding repair or maintenance requests and monitor the status of their request
     <script scr="script.js"></script>
     <script>
 
-            $(document).ready(function () {
+        $(document).ready(function () {
+
+            $('.numbersOnly').keyup(function () {
+                this.value = this.value.replace(/[^0-9\.]/g, '');
+            })
+
+        });
     
-                $('.numbersOnly').keyup(function () {
-                    this.value = this.value.replace(/[^0-9\.]/g, '');
-                })
-    
-            });
-    
-        </script>
+    </script>
     
 </body>
 
