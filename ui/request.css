@@ -97,7 +97,7 @@ select.txt {
 
 
 button.status-pending {
-    background-color: rgb(223, 86, 104);
+    background-color: rgb(30, 5, 99);
     color: white;
     padding: 4px 4px;
     width:80px;
@@ -120,7 +120,7 @@ button.status-rejected {
 
 
 button.status-approved {
-    background-color: blue;
+    background-color: #4CAF50;
     color: white;
     padding: 4px 4px;
     width:80px;
@@ -132,7 +132,7 @@ button.status-approved {
 
 
 button.status-resolved {
-    background-color: #4CAF50;
+    background-color: rgb(175, 170, 170);
     color: white;
     padding: 4px 4px;
     width:80px;
@@ -140,4 +140,63 @@ button.status-resolved {
     border-radius: 3px;
     cursor: pointer;
     float: right;
+}
+
+/* Styling Request Table */
+
+#tblRequest {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    color: black;
+}
+
+#tblRequest td, #tblRequest th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#tblRequest tr:nth-child(even){background-color: #f2f2f2;}
+
+#tblRequest tr:hover {background-color: rgba(221, 221, 221, 0.4);}
+
+#tblRequest th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+/* Request Links*/
+a.request {
+    text-decoration: none;
+    color:#000 !important;
+}
+ 
+a.request:link {
+    text-decoration: none;
+}
+
+a.request:visited {
+    text-decoration: none;
+    color:rgb(36, 32, 32);
+}
+
+a.request:hover {
+    text-decoration: underline;
+    color: rgb(3, 3, 75);
+    cursor: help;
+}
+
+a.request:active {
+    text-decoration: underline;
+    color:rgb(51, 32, 32) !important;
+}
+
+.feedback {
+    font-size: small;
+    background-color: #003A61;
+    padding:8px;
 }

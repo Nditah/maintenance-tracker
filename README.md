@@ -16,3 +16,33 @@ status of their request.
 7. The user can view all his/her requests
 
 
+## SERVER-SIDE
+
+npm install -g eslint for a global install
+eslint --init
+
+First we'll install babel-cli.
+
+$ npm install --save-dev babel-cli
+Along with some presets.
+
+$ npm install --save-dev babel-preset-es2015 babel-preset-stage-2
+
+Then we'll add our first npm start script in package.json.
+
+  "scripts": {
++   "start": "babel-node index.js --presets es2015,stage-2"
+  }
+
+#  Watching file changes with nodemon
+We can improve our npm start script with nodemon.
+
+$ npm install --save-dev nodemon
+Then we can update our npm start script.
+
+  "scripts": {
+-   "start": "babel-node index.js"
++   "start": "nodemon index.js --exec babel-node --presets es2015,stage-2"
+  }
+
+  // https://github.com/babel/example-node-server

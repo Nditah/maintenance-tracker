@@ -19,7 +19,7 @@ regarding repair or maintenance requests and monitor the status of their request
 <body>
 
     <header>
-        <h1>Maintenance Tracker </h1>
+        <h1>Maintenance Tracker :: Admin </h1>
     </header>
 
     <nav>
@@ -32,6 +32,9 @@ regarding repair or maintenance requests and monitor the status of their request
             </li>
             <li>
                 <a href="#">Profile</a>
+            </li>
+            <li style="float:right">
+                <a href="request.html">User</a>
             </li>
             <li style="float:right">
                 <a href="index.html">Logout</a>
@@ -66,13 +69,13 @@ regarding repair or maintenance requests and monitor the status of their request
                     <tr>
                         <td colspan=5>
                             <div id="lifeContent">
-                                <table width="100%">
+                                <table width="100%" id="tblRequest">
                                     <tr>
                                         <td width="10%">101</td>
                                         <td width="15%">2018-05-12</td>
                                         <td width="20%">Ola Adaeze</td>
                                         <td width="40%">
-                                            <a href="admin.html?id=1">Wireless Network is faulty</a>
+                                            <a id=1 class="request">Wireless Network is faulty</a>
                                         </td>
                                         <td width="15%"><button class="status-approved">Approved</button></td>
                                     </tr>
@@ -81,7 +84,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>2018-05-12</td>
                                         <td>Musa Eze</td>
                                         <td>
-                                            <a href="admin.html?id=1">Inverter is faulty</a>
+                                            <a id=1 class="request">Inverter is faulty</a>
                                         </td>
                                         <td><button class="status-pending">Pending</button></td>
                                     </tr>
@@ -90,7 +93,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>2018-05-12</td>
                                         <td>Vera Sussan</td>
                                         <td>
-                                            <a href="admin.html?id=1">Poor Connectivity</a>
+                                            <a id=1 class="request">Poor Connectivity</a>
                                         </td>
                                         <td><button class="status-pending">Pending</button></td>
                                     </tr>
@@ -99,7 +102,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>2018-05-12</td>
                                         <td>Mike Frank</td>
                                         <td>
-                                            <a href="admin.html?id=1">Powerplant Overheating</a>
+                                            <a id=1 class="request">Powerplant Overheating</a>
                                         </td>
                                         <td><button class="status-rejected">Rejected</button></td>
                                     </tr>
@@ -108,7 +111,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>2018-05-12</td>
                                         <td>Mirabel Jane</td>
                                         <td>
-                                            <a href="admin.html?id=1">Generator is noisy</a>
+                                            <a id=1 class="request">Generator is noisy</a>
                                         </td>
                                         <td><button class="status-rejected">Rejected</button></td>
                                     </tr>
@@ -117,7 +120,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>2018-05-12</td>
                                         <td>Obi Boye</td>
                                         <td>
-                                            <a href="admin.html?id=1">Wireless Network is faulty</a>
+                                            <a id=1 class="request">Wireless Network is faulty</a>
                                         </td>
                                         <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
@@ -126,7 +129,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>2018-05-12</td>
                                         <td>Allen Kiosky</td>
                                         <td>
-                                            <a href="admin.html?id=1">Monitor Blackout</a>
+                                            <a id=1 class="request">Monitor Blackout</a>
                                         </td>
                                         <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
@@ -135,7 +138,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>2018-05-12</td>
                                         <td>Joel Nike</td>
                                         <td>
-                                            <a href="admin.html?id=1">Crashed Harddrive</a>
+                                            <a id=1 class="request">Crashed Harddrive</a>
                                         </td>
                                         <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
@@ -144,7 +147,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>2018-05-12</td>
                                         <td>Zoom Adaeze</td>
                                         <td>
-                                            <a href="admin.html?id=1">Burned Charger</a>
+                                            <a id=1 class="request">Burned Charger</a>
                                         </td>
                                         <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
@@ -153,7 +156,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>2018-05-12</td>
                                         <td>Queen Kim</td>
                                         <td>
-                                            <a href="admin.html?id=1">Adapter is faulty</a>
+                                            <a id=1 class="request">Adapter is faulty</a>
                                         </td>
                                         <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
@@ -162,7 +165,7 @@ regarding repair or maintenance requests and monitor the status of their request
                                         <td>2018-05-12</td>
                                         <td>Noela Sunday</td>
                                         <td>
-                                            <a href="admin.html?id=1">Wireless Network is faulty</a>
+                                            <a id=1 class="request">Wireless Network is faulty</a>
                                         </td>
                                         <td><button class="status-resolved">Resolved</button></td>
                                     </tr>
@@ -192,7 +195,8 @@ regarding repair or maintenance requests and monitor the status of their request
         </div>
     </section>
 
-    <script scr="script.js"></script>
+    <script scr="admin-script.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
 </body>
 
 </html>

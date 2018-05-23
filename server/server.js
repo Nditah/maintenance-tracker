@@ -1,113 +1,103 @@
 
-var UsersTable = [
-{ "id": 1 , "type": "admin" , "email": "admin@andela.com", "password": "pass", "firstName": "Scott" , "lastName": "Tiger", "phone": "123-456-777" , "address": "Upper Str.", "createdOn": "2018-05-09" },
-{ "id": 2 , "type": "user" , "email": "user@andela.com", "password": "pass", "firstName": "Scott" , "lastName": "Tiger", "phone": "123-456-777" , "address": "Upper Str.", "createdOn": "2018-05-10" },
-{ "id": 3 , "type": "user" , "email": "sam@andela.com", "password": "pass", "firstName": "Samweld" , "lastName": "Nditah", "phone": "123-456-777" , "address": "Epic Tower", "createdOn": "2018-05-12" }
-]
+/*
+ import { today, isStringOk, isNumberOk  } from "./database";
+ import { isUser, getUser, getAllUsers, updateUser, getUserIndex  } from "./database";
+ import { getRequestsIndex, getAllRequests } from "./database";
+ const getRequest = require("./database").getRequest;
+*/
 
-var RequestsTable = [
-{ "id": 1 , "user": 1 , "subject": "Webpay" , "description": "Typescript Wrapper", "status": "Pending" , "priority": "Low", "createdOn": "2018-05-12" },
-{ "id": 2 , "user": 2 , "subject": "Erlang Server" , "description": "Chat Messenger", "status": "Pending" , "priority": "High", "createdOn": "2018-05-02" },
-{ "id": 3 , "user": 3 , "subject": "Django" , "description": "Python framework", "status": "Pending" , "priority": "Normal", "createdOn": "2018-05-11" },
-{ "id": 4 , "user": 1 , "subject": "Java" , "description": "Spring JEE", "status": "Pending" , "priority": "Low", "createdOn": "2018-05-12" },
-{ "id": 5 , "user": 2 , "subject": "Rest API" , "description": "GraphQL Integration", "status": "Pending" , "Normal": "Low", "createdOn": "2018-05-12" },
-{ "id": 6 , "user": 3 , "subject": "Rust" , "description": "Go Rust Speed Test", "status": "Pending" , "priority": "High", "createdOn": "2018-05-14" },
-{ "id": 7 , "user": 1 , "subject": "Andela" , "description": "EPIC All the Way", "status": "Pending" , "priority": "Low", "createdOn": "2018-05-17" },
-{ "id": 8 , "user": 3 , "subject": "Samweld" , "description": "3Dcoder Top 1%", "status": "Pending" , "priority": "High", "createdOn": "2018-05-21" }
-]	
+//import { getUserRequests, getRequest, createRequest, updateRequest  } from "./database";
 
-console.log("Server is running...")
+const express = require('express');
 
-var express = require("express")
+const app = express();
 
-var app = express()
+const PORT = 5000;
 
-const PORT = 3000
-
-var server = app.listen(PORT, listening)
+const server = app.listen(PORT, listening);
 
 function listening() {
-	console.log("listening on port " + PORT + "...")
+	console.log(`listening on port ${PORT}...`);
 }
 
-app.use(express.static("website"))
+app.use(express.static('website'));
+
+/*
+// ROUTING FUNCTIONS
+function _sendUserRequests (request, response) {
+	const reply = response.send(getUserRequests());
+	response.send(reply);
+}
+
+
+function _sendRequest(request, response) {
+
+   const data = request.params;
+   const requests = data.requests;
+   const id = data.id;
+
+   const reply = getRequest(id)
+
+   response.send(reply);
+}
+
+function _createRequest(request, response) {
+   const data = request.params;
+
+   const id = data.id;
+   const user = data.user;
+   const subject = data.subject;
+   const description = data.description;
+   const status = data.status;
+   const priority = data.priority;
+   const createdOn = today();
+
+   const reply = createRequest(user, subject, description, status, priority, createdOn);
+   response.send(reply);
+}
+
+//let createParam = '/users/requests/create/:id/:user';
+//createParam += '/:subject/:description/:status/:priority/:createdOn';
+
+//app.get(createParam, createRequest);
+
+function _updateRequest (request, response) {
+   const data = request.params;
+
+   // Param attrib
+   const id = data.id;
+   const user = data.user;
+   const subject = data.subject;
+   const description = data.description;
+   const status = data.status;
+   const priority = data.priority;
+   const createdOn = today();
+
+   updateRequest(id, user, subject, description, status, priority, createdOn);
+}
+
+// UPDATE REQUEST
+
+let updateParam = '/users/requests/update/:id/:user';
+
+updateParam += '/:subject/:description/:status/:priority/:createdOn';
+
+app.get(updateParam, updateRequest);
 
 
 // ROUTING
 
 // Fetch all the requests of a logged in user: GET /users/requests
-app.get("/users/requests/", sendAllRequests)
+app.get('/users/requests', _sendUserRequests);
 
-// Fetch a single request that belongs to a logged in user
-// GET /users/requests/<requestId>
-app.get("/users/:requests/:id", sendRequest) ; 
+// Fetch a single request GET /users/requests/<requestId>
+
+app.get('/users/:requests/:id', _sendRequest);
 
 // Create a request: POST /users/requests
-app.post("/users/requests/", sendRequest) ; 
+app.post('/users/requests/', _createRequest);
 
 // Modify a request : PUT /users/requests/<requestId>
-app.put("/users/:requests/:id", sendRequest) ; 
+app.put('/users/:requests/:id', _updateRequest);
 
-
-function sendRequest(request, response) {
-	response.send("These are users maintenance request")
-}
-
-app.get("/request/:id", sendRequest)
-
-function sendRequest(request, response) {
-	
-	var data = request.params
-	var requests = data.requests
-	var id = data.id
-	
-	var reply = " Maintenance Request ID is "+ id 
-	reply += " Maintenance Requests are "+ requests  
-	
-	response.send(reply)
-}
-
-function sendAllRequests(request, response) {
-	response.send(RequestsTable)
-}
-
-// CREATE REQUEST
-app.get("/users/requests/create/:id/:user/:subject/:description/:status/:priority/:createdOn", createRequest)
-
-function createRequest(request, response) {
-	var data = request.params
-	
-	var id =  data.id
-	var user =  data.user
-	var subject =  data.subject
-	var description =  data.description
-	var status =  data.status
-	var priority =  data.priority
-	var createdOn =  data.createdOn
-	
-	var newRequest = { "id": id , "user": user , "subject": subject , "description": description, "status": status , "priority": priority, "createdOn": createdOn }
-	
-	RequestsTable.push(newRequest) 
-	
-}
-
-// UPDATE REQUEST 
-
-app.get("/users/requests/update/:id/:user/:subject/:description/:status/:priority/:createdOn", updateRequest)
-
-function updateRequest(request, response) {
-	var data = request.params
-	
-	var id =  data.id
-	var user =  data.user
-	var subject =  data.subject
-	var description =  data.description
-	var status =  data.status
-	var priority =  data.priority
-	var createdOn =  data.createdOn
-	
-	var modifyRequest = { "id": id , "user": user , "subject": subject , "description": description, "status": status , "priority": priority, "createdOn": createdOn }
-	
-	RequestsTable.push(modifyRequest) 
-	
-}
+*/
