@@ -18,7 +18,7 @@ regarding repair or maintenance requests and monitor the status of their request
 <body>
 
     <header>
-        <h1>Maintenance Tracker </h1>
+        <h1>Maintenance Tracker :: User</h1>
     </header>
 
     <nav>
@@ -31,6 +31,9 @@ regarding repair or maintenance requests and monitor the status of their request
             </li>
             <li>
                 <a href="#">Contact</a>
+            </li>
+            <li style="float:right">
+                <a href="admin.html">Admin</a>
             </li>
             <li style="float:right">
                 <a href="index.html">Logout</a>
@@ -52,185 +55,34 @@ regarding repair or maintenance requests and monitor the status of their request
             <div class="col" id="lifeContainer">
                 <table class="life-container" width="100%">
                     <tr>
+                        <th width="10%">SN</th>
                         <th width="10%">ID</th>
                         <th width="10%">Date</th>
-                        <th width="60%">Subject </th>
+                        <th width="50%">Subject </th>
                         <th width="20%">Status</th>
                     </tr>
                     <tr>
-                        <td colspan=4>
+                        <td colspan=5 style="padding:0; width:100% !important;">
                             <div id="lifeContent">
-                                <table width="100%">
+                                <table id="tblRequest" class="tblRequest" width="100%">
                                     <tr>
-                                        <td width="10%">101</td>
-                                        <td width="15%">2018-05-12</td>
-                                        <td width="55%">
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td width="15%">
-                                            <span class="status">Accepted</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Accepted</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Rejected</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Rejected</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Resolved</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Resolved</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>
-                                            <a href="request.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td>
-                                            <span class="status">Pending</span>
-                                        </td>
+                                        <th width="10%">SN</th>
+                                        <th width="10%">ID</th>
+                                        <th width="10%">Date</th>
+                                        <th width="50%">Subject </th>
+                                        <th width="20%">Status</th>
                                     </tr>
                                 </table>
                             </div>
                         </td>
                     </tr>
+
                 </table>
 
             </div>
 
             <div class="col">
-                <p class="sm" id="output">Create a new repair / maintenance request &nbsp; </p>
+                <p class="feedback" id="feedback">Create a new repair / maintenance request or click on the record on the table to view details &nbsp; </p>
 
                 <form name="requestForm" id="requestForm" method="POST">
                     <!-- <input type="text" class="txt" name="requestStatus" id="requestStatus" placeholder="Request Status"> -->
@@ -242,42 +94,25 @@ regarding repair or maintenance requests and monitor the status of their request
                         <option value="Normal">Normal</option>
                         <option value="High">High</option>
                     </select>
-                    <button type="button" class="btn" onclick="addRequest();">Submit</button>
+                    <button type="button" class="btn" onclick="createRequest();">Submit</button>
                 </form>
+
             </div>
         </div>
     </section>
 
-    <script>
-    
-    // Add Record
-function addRequest() { 
-    //document.getElementById("requestForm")
-    //.addEventListener('submit', function(event){event.preventDefault();});
 
-    let  requestSubject = document.forms["requestForm"]["requestSubject"].value;
-    if (requestSubject == "") {
-        alert("Request Subject must be filled out");
-        return false;
-    }
-    let  requestDescription = document.forms["requestForm"]["requestDescription"].value;
-    if (requestDescription == "") {
-        alert("Request Description must be filled out");
-        return false;
-    }
-    let  requestPriority = document.forms["requestForm"]["requestPriority"].value;
-    if (requestPriority == "") {
-        alert("Request Priority must be selected");
-        return false;
-    }  
-    
- 
-    document.getElementById("output").innerHTML = "Record Added successfully";
-    return false;
- 
-	
-}
-</script>
+    <script src="jquery.min.js"></script>
+    <script src="request-script.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            readRequest();
+
+        });
+
+    </script>
+
 </body>
 
 </html>

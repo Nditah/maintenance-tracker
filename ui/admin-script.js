@@ -24,8 +24,8 @@ function readRequest() {
 	$('#tblRequest tr').not(':first').not(':last').remove();
 	let tblRequest = '';
 	for(let i = 0; i < RequestsTable.length; i++) {
-		tblRequest += '<tr><td>' + (i+1).toString() + '</td>' +
-						'<td>' + RequestsTable[i].id + '</td>' +
+		tblRequest += '<tr><td>' + RequestsTable[i].id + '</td>' +
+						'<td>' + RequestsTable[i].user + '</td>' +
 						'<td>' + RequestsTable[i].createdOn + '</td>' + 
 						'<td><a class="request" href="#" onClick="getRequestDetails(' + RequestsTable[i].id + ');">' 
 						+ RequestsTable[i].subject + '</a></td>' +
@@ -45,11 +45,13 @@ function getRequestDetails(request_Id) {
 				if (RequestsTable[i].id == id) {
 					// return RequestsTable[i];
 					console.log(RequestsTable[i]);
-					$('#requestSubject').val(RequestsTable[i].subject);
-					$('#requestDescription').val(RequestsTable[i].description);
-					$('#requestPriority').val(RequestsTable[i].priority);
-					//$('#requestUser').val(RequestsTable[i].user);
-					 break; 
+					$('#requestSubject').html(RequestsTable[i].subject);
+					$('#requestDescription').html(RequestsTable[i].description);
+					$('#requestPriority').html(RequestsTable[i].priority);
+					$('#requestUser').html(RequestsTable[i].user);
+					$('#requestDate').html(RequestsTable[i].createdOn);
+					$('#requestStatus').html(RequestsTable[i].status);
+					 return 1; //break; 
 				}
 			}
 		}
@@ -95,5 +97,5 @@ function getRequestDetails(request_Id) {
 		RequestsTable.unshift(newRequest);
 	 	readRequest();
 	}
-
-	console.log("Loading from request.js")
+	
+console.log("Loading from admin-script.js")

@@ -19,7 +19,7 @@ regarding repair or maintenance requests and monitor the status of their request
 <body>
 
     <header>
-        <h1>Maintenance Tracker </h1>
+        <h1>Maintenance Tracker :: Admin </h1>
     </header>
 
     <nav>
@@ -32,6 +32,9 @@ regarding repair or maintenance requests and monitor the status of their request
             </li>
             <li>
                 <a href="#">Profile</a>
+            </li>
+            <li style="float:right">
+                <a href="request.html">User</a>
             </li>
             <li style="float:right">
                 <a href="index.html">Logout</a>
@@ -54,9 +57,9 @@ regarding repair or maintenance requests and monitor the status of their request
                 <table class="life-container" width="100%">
 
             <tr>
-                <th width="10%"><a href="#" class="sort">ID <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
-                <th width="15%"><a href="#" class="sort">Date <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
-                <th width="20%"><a href="#" class="sort">User <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
+                <th width="10%"><a href="#" class="sort">RID <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
+                <th width="15%"><a href="#" class="sort">UserId <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
+                <th width="20%"><a href="#" class="sort">Date <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
                 <th width="40%"><a href="#" class="sort">Subject <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
                 <th width="15%"><a href="#" class="sort">Status <img src="./images/sort-32.png" width="16px" width="16px" class="sorti" /></a></th>
             </tr>
@@ -66,107 +69,15 @@ regarding repair or maintenance requests and monitor the status of their request
                     <tr>
                         <td colspan=5>
                             <div id="lifeContent">
-                                <table width="100%">
-                                    <tr>
-                                        <td width="10%">101</td>
-                                        <td width="15%">2018-05-12</td>
-                                        <td width="20%">Ola Adaeze</td>
-                                        <td width="40%">
-                                            <a href="admin.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td width="15%"><button class="status-approved">Approved</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>Musa Eze</td>
-                                        <td>
-                                            <a href="admin.html?id=1">Inverter is faulty</a>
-                                        </td>
-                                        <td><button class="status-pending">Pending</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>Vera Sussan</td>
-                                        <td>
-                                            <a href="admin.html?id=1">Poor Connectivity</a>
-                                        </td>
-                                        <td><button class="status-pending">Pending</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>Mike Frank</td>
-                                        <td>
-                                            <a href="admin.html?id=1">Powerplant Overheating</a>
-                                        </td>
-                                        <td><button class="status-rejected">Rejected</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>Mirabel Jane</td>
-                                        <td>
-                                            <a href="admin.html?id=1">Generator is noisy</a>
-                                        </td>
-                                        <td><button class="status-rejected">Rejected</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>Obi Boye</td>
-                                        <td>
-                                            <a href="admin.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td><button class="status-resolved">Resolved</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>Allen Kiosky</td>
-                                        <td>
-                                            <a href="admin.html?id=1">Monitor Blackout</a>
-                                        </td>
-                                        <td><button class="status-resolved">Resolved</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>Joel Nike</td>
-                                        <td>
-                                            <a href="admin.html?id=1">Crashed Harddrive</a>
-                                        </td>
-                                        <td><button class="status-resolved">Resolved</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>Zoom Adaeze</td>
-                                        <td>
-                                            <a href="admin.html?id=1">Burned Charger</a>
-                                        </td>
-                                        <td><button class="status-resolved">Resolved</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>Queen Kim</td>
-                                        <td>
-                                            <a href="admin.html?id=1">Adapter is faulty</a>
-                                        </td>
-                                        <td><button class="status-resolved">Resolved</button></td>
-                                    </tr>
-                                    <tr>
-                                        <td>101</td>
-                                        <td>2018-05-12</td>
-                                        <td>Noela Sunday</td>
-                                        <td>
-                                            <a href="admin.html?id=1">Wireless Network is faulty</a>
-                                        </td>
-                                        <td><button class="status-resolved">Resolved</button></td>
-                                    </tr>
-                                </table>
+                                    <table id="tblRequest" class="tblRequest" width="100%">
+                                        <tr>
+                                            <th width="10%">Id</th>
+                                            <th width="10%">User</th>
+                                            <th width="10%">Date</th>
+                                            <th width="50%">Subject </th>
+                                            <th width="20%">Status</th>
+                                        </tr>
+                                    </table>
                             </div>
                         </td>
                     </tr>
@@ -174,25 +85,49 @@ regarding repair or maintenance requests and monitor the status of their request
 
             </div>
 
-            <div class="col">
-                <p class="sm">Update maintenance request &nbsp; </p>
+            <div class="col" id="col2">
+                <p class="sm">View / Update Maintenance Request Status &nbsp; </p>
 
                 <form name="adminForm" id="adminForm" method="POST" >
-                    <input type="text" class="txt" name="userName" id="userName" placeholder="User Name" readonly>
-                    <textarea class="txt" name="userRequest" id="userRequest" rows=4 placeholder="Request Details" readonly>The Date, priority, dubject, description of request </textarea>
-                    <select class="txt" name="requestStatus" id="requestStatus" required>
-                        <option value="" disabled selected>Select request status</option>
-                        <option value="Accepted">Accepted</option>
-                        <option value="Rejected">Rejected</option>
-                        <option value="Resolved">Resolved</option>
+                    <input type="hidden" class="txt" name="hidden_id" id="hidden_id"  readonly />
+										
+                        <table class="tblRequest" width="100%"> 
+                        <tr><th style="width:15%; align-content:left;">Status: </th><td id="requestStatus"></td></tr>
+                        <tr><th>Date: </th><td id="requestDate"></td></tr>
+                       <tr><th>User: </th><td id="requestUser"></td></tr>
+                       <tr><th>Subject: </th><td id="requestSubject"></td></tr>
+                       <tr><th>Description: </th><td id="requestDescription"></td></tr>
+                       <tr><th>Priority: </th><td id="requestPriority"></td></tr>
+                       <tr><th>Manage? </th><td id=""><label class="switch">
+                           <input type="checkbox"><span class="slider round"></span></label>
+                        </td></tr>
+                        </table>
+                        
+                   
+                    <select class="txt" name="newStatus" id="newStatus" required>
+                        <option value="pending" disabled selected>Select status</option>
+                        <option value="approved">Accepted</option>
+                        <option value="rejected">Rejected</option>
+                        <option value="resolved">Resolved</option>
                     </select>
+										
                     <button type="button" type="submit" class="btn" >Save</button>
                 </form>
             </div>
         </div>
     </section>
+		
+    <script src="jquery.min.js"></script>
+    <script src="admin-script.js"></script>
+    <script>
 
-    <script scr="script.js"></script>
+        $(document).ready(function () {
+            readRequest();
+
+        });
+
+    </script>
+
 </body>
 
 </html>

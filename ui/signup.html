@@ -29,20 +29,21 @@ regarding repair or maintenance requests and monitor the status of their request
 
             <form method="POST" action="index.html">
                 <p class="sm">Login with your email and password</p>
-                <input type="text" class="txt" name="firstName" id="firstName" placeholder="First Name">
-                <input type="text" class="txt" name="lastName" id="lastName" placeholder="Last Name">
-                <input type="text" class="txt" name="phone" id="phone" placeholder="Phone">
-                <textarea class="txt" name="address" id="address" placeholder="Address"></textarea>
-                <!--
+                <input type="text" class="txt" name="firstName" id="firstName" placeholder="First Name" required>
+                <input type="text" class="txt" name="lastName" id="lastName" placeholder="Last Name" required>
+                <input type="text" class="txt" name="phone" id="phone" placeholder="Phone" required>
+                <textarea class="txt" name="address" id="address" placeholder="Address" required></textarea>
+								<!--
                 <select class="txt" name="service" id="service">
                     <option value="" disabled selected>Service Tier</option>
                     <option value="Basic">Basic Services</option>
                     <option value="Standard">Standard Services</option>
                     <option value="Premium">Premium Services</option>
-                </select> -->
-                <input type="email" class="txt" name="email" id="email" placeholder="Email">
-                <input type="password" class="txt" name="password" id="password" placeholder="Password">
-                <input type="password" class="txt" name="password2" id="password2" placeholder="Confirm Password">
+                </select> 
+								-->
+                <input type="email" class="txt" name="email" id="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                <input type="password" class="txt" name="password" id="password" placeholder="Password" required />
+                <input type="password" class="txt" name="password2" id="password2" placeholder="Confirm Password" required />
                 <button type="submit" class="btn" value="Signup">Signup</button>
                 <p>Already have an account? &nbsp; <a href="index.html"> Login</a></p>
             </form>
@@ -52,7 +53,20 @@ regarding repair or maintenance requests and monitor the status of their request
 
     </div>
     </section>
+    <script src="jquery.min.js"></script>
     <script scr="script.js"></script>
+    <script>
+
+        $(document).ready(function () {
+
+            $('.numbersOnly').keyup(function () {
+                this.value = this.value.replace(/[^0-9\.]/g, '');
+            })
+
+        });
+    
+    </script>
+    
 </body>
 
 </html>

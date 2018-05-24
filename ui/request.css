@@ -1,8 +1,17 @@
 .container {
     display: grid;
     grid-template-columns: 60% auto;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
-
+/*
+.grid-container-fill {
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  }
+  
+  .grid-container-fit {
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  }
+*/
 .col {
     padding: .4em 1.3em;
 }
@@ -73,8 +82,8 @@ select.txt {
 
 #lifeContainer
 {                
-   overflow: hidden; 
-}
+   overflow: hidden;
+ }
 
 #lifeContent
 {
@@ -97,7 +106,7 @@ select.txt {
 
 
 button.status-pending {
-    background-color: rgb(223, 86, 104);
+    background-color: rgb(30, 5, 99);
     color: white;
     padding: 4px 4px;
     width:80px;
@@ -120,7 +129,7 @@ button.status-rejected {
 
 
 button.status-approved {
-    background-color: blue;
+    background-color: #4CAF50;
     color: white;
     padding: 4px 4px;
     width:80px;
@@ -132,7 +141,7 @@ button.status-approved {
 
 
 button.status-resolved {
-    background-color: #4CAF50;
+    background-color: rgb(175, 170, 170);
     color: white;
     padding: 4px 4px;
     width:80px;
@@ -141,3 +150,123 @@ button.status-resolved {
     cursor: pointer;
     float: right;
 }
+
+/* Styling Request Table */
+
+.tblRequest {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    color: black;
+}
+
+.tblRequest td, .tblRequest th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.tblRequest tr:nth-child(even){background-color: #f2f2f2;}
+
+.tblRequest tr:hover {background-color: rgba(221, 221, 221, 0.4);}
+
+.tblRequest th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+}
+
+
+/* Request Links*/
+a.request {
+    text-decoration: none;
+    color:#000 !important;
+}
+ 
+a.request:link {
+    text-decoration: none;
+}
+
+a.request:visited {
+    text-decoration: none;
+    color:rgb(36, 32, 32);
+}
+
+a.request:hover {
+    text-decoration: underline;
+    color: rgb(3, 3, 75);
+    cursor: help;
+}
+
+a.request:active {
+    text-decoration: underline;
+    color:rgb(51, 32, 32) !important;
+}
+
+.feedback {
+    font-size: small;
+    background-color: #003A61;
+    padding:8px;
+}
+
+
+
+/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch  */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
