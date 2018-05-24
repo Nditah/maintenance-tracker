@@ -2,7 +2,7 @@ var express = require('express');
 var pg = require("pg");
 var app = express();
  
-var connectionString = "    postgres://bfxyknabiikqnx:4597af2a1387cf3aee62700919239a43ecba83a1e82738add365007348b7f06c@ec2-54-217-208-52.eu-west-1.compute.amazonaws.com:5432/d8d2grf4h559oa";
+var connectionString = "postgres://bfxyknabiikqnx:4597af2a1387cf3aee62700919239a43ecba83a1e82738add365007348b7f06c@ec2-54-217-208-52.eu-west-1.compute.amazonaws.com:5432/d8d2grf4h559oa";
  
 app.get('/', function (req, res, next) {
     pg.connect(connectionString,function(err,client,done) {
