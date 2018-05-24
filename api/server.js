@@ -33,21 +33,17 @@ app.get('/requests/:requestId', model.sendRequest);
 
 
 // View all requests from a particular user
-app.get('/user/requests/:userId', model.sendUserRequests);
+app.get('/user/requests/:userId?', model.sendUserRequests);
 
 
-// Create a user
-app.get('/create/users/:type/:email/:password/:firstName/:lastName/:phone/:address?', model.createUser);
+// Create a user /users/:type/:email/:password/:firstName/:lastName/:phone/:address?
+app.post('/users', model.createUser);
 
+// Create Request users/requests/:user/:subject/:description/:status/:priority
+app.post('/users/requests', model.createRequest);
 
-app.get('/user/login/:email/:password', model.loginUser);
-
-
-app.get('/create/requests/:user/:subject/:description/:status/:priority', model.createRequest);
-
-// Modify Maintenance Request
-
-app.get('/update/requests/:id/:user/:subject/:description/:status/:priority', model.updateRequest);
+// Update Maintenance Request /users/requests/:id/:user/:subject/:description/:status/:priority'
+app.put('/users/requests/:id', model.updateRequest);
 
 
 /*

@@ -1,0 +1,14 @@
+Host
+    ec2-54-217-208-52.eu-west-1.compute.amazonaws.com
+Database
+    d8d2grf4h559oa
+User
+    bfxyknabiikqnx
+Port
+    5432
+Password
+    4597af2a1387cf3aee62700919239a43ecba83a1e82738add365007348b7f06c
+URI
+    postgres://bfxyknabiikqnx:4597af2a1387cf3aee62700919239a43ecba83a1e82738add365007348b7f06c@ec2-54-217-208-52.eu-west-1.compute.amazonaws.com:5432/d8d2grf4h559oa
+Heroku CLI
+    heroku pg:psql postgresql-flexible-26251 --app maintenance-tracker

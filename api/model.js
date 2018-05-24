@@ -72,7 +72,7 @@ function sendRequest(request, response) {
 
 function sendUserRequests(request, response) {
     const data = request.params;
-    const userId = data.userId;
+    const userId = data.userId || 1 ;
     let userRequests = getUserRequests(userId);
     response.send(userRequests);
 }
