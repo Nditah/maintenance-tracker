@@ -3,8 +3,7 @@
 # dependencies
 /api/node_modules
 
-# static site
-/ui/website
+
 
 
 
