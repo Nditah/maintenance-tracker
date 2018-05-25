@@ -54,14 +54,18 @@ app.post('/users/requests', model.createRequest);
 app.put('/users/requests/:requestId', model.updateRequest);
 
 
-/*
-'/users' => All users
-'/user/login/:email/:password' => loginUser
-'/requests' => All requests
-'/requests/:requestId' => A particular Request
-'/users/:userId' => A particular User
-'/user/requests/:userId' => View all requests from a particular user
-'/create/users/:type/:email/:password/:firstName/:lastName/:phone/:address'
-'/create/requests/:user/:subject/:description/:status/:priority'
-'/update/requests/:id/:user/:subject/:description/:status/:priority'
-*/
+// Update Maintenance Request /users/requests/:id/:user/:subject/:description/:status/:priority'
+app.put('/users/requests/:requestId', model.updateRequest);
+
+// Approve request is available onlyto admin users. 
+// When this endpoint is called, the status ofthe request should bepending.
+// PUT/requests/<requestId>/approve
+app.put('/requests/:requestId/approve', model.approveRequest);
+
+// Disapprove request is available onlyto admin users.
+// PUT/requests/<requestId>/disapprove
+app.put('/requests/:requestId/disapprove', model.disapproveRequest);
+
+// Resolve request is available onlyto admin users.
+// PUT/requests/<requestId>/resolve
+app.put('/requests/:requestId/resolve', model.resolveRequest);

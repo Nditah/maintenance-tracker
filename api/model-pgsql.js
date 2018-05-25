@@ -235,6 +235,76 @@ function updateRequest(request, response) {
         });
 }
 
+
+
+ 
+// '/requests/:requestId/approve' 
+function approveRequest(request, response) {
+        // create new user objects
+        const id = parseInt(request.params.requestId);
+        const userId = parseInt(request.body.user); // Authentication and Authorization
+
+        // SQL Query > Update Data
+        const sql ="UPDATE tbl_request SET rstatus='approved' WHERE id=($1) AND rstatus='pending' ";
+        const values = [ rstatus, id];
+    
+        client.query(sql, values)
+            .then(result => {
+                const reply = result.rowCount;
+                response.send(`Rows affected: ${reply}`);
+                console.log(`Rows affected: ${reply}`);
+            })
+            .catch(err => {
+                console.log(err);
+                throw err;
+            });
+}
+
+// '/requests/:requestId/disapprove' 
+function disapproveRequest(request, response) {
+         // create new user objects
+         const id = parseInt(request.params.requestId);
+         const userId = parseInt(request.body.user); // Authentication and Authorization
+ 
+         // SQL Query > Update Data
+         const sql ="UPDATE tbl_request SET rstatus='rejected' WHERE id=($1) AND rstatus='pending' ";
+         const values = [id];
+     
+         client.query(sql, values)
+             .then(result => {
+                 const reply = result.rowCount;
+                 response.send(`Rows affected: ${reply}`);
+                 console.log(`Rows affected: ${reply}`);
+             })
+             .catch(err => {
+                 console.log(err);
+                 throw err;
+             });   
+}
+
+// '/requests/:requestId/resolve' 
+function resolveRequest(request, response) {
+         // create new user objects
+         const id = parseInt(request.params.requestId);
+         const userId = parseInt(request.body.user); // Authentication and Authorization
+ 
+         // SQL Query > Update Data
+         const sql ="UPDATE tbl_request SET rstatus='resolved' WHERE id=($1) AND rstatus !='rejected' ";
+         const values = [id];
+     
+         client.query(sql, values)
+             .then(result => {
+                 const reply = result.rowCount;
+                 response.send(`Rows affected: ${reply}`);
+                 console.log(`Rows affected: ${reply}`);
+             })
+             .catch(err => {
+                 console.log(err);
+                 throw err;
+             });   
+}
+
+
 function deleteRequest(requestId) {
     const id = parseInt(requestId);
     const query = " DELETE FROM tbl_request WHERE id =" + id + "; ";
@@ -293,5 +363,9 @@ module.exports = {
     readAllUserRequests,
     readRequest,
     updateRequest,
+    approveRequest,
+    disapproveRequest,
+    resolveRequest,
     deleteRequest
 }
+

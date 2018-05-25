@@ -101,7 +101,8 @@ function createUser(request, response) {
     // create new user objects
     let reply = { msg:""}; 
     let ok = true;
-    const data = request.params;
+    //const data = request.params;
+    const data = request.body;
     userRecord.id = usersTable.length + 1;
     userRecord.type = data.type;
     userRecord.email = data.email;
@@ -221,8 +222,9 @@ function _updateRequest(newRequest) {
 
 function updateRequest(request, response) {
     // create new user objects
-    const data = request.params;
-    requestRecord.id = data.id;
+    //const data = request.params;
+    const data = request.body;
+    requestRecord.id = request.params.id;
     requestRecord.user = data.user;
     requestRecord.subject = data.subject;
     requestRecord.description = data.description;
