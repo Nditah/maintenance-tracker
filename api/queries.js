@@ -11,6 +11,9 @@ var options = {
   promiseLib: promise
 };
 
+
+
+
 var pgp = require('pg-promise')(options);
 var db = pgp(URI);
 
@@ -18,7 +21,7 @@ var db = pgp(URI);
 
 // GET All Requests
 function getAllRequests(req, res, next) {
-    db.any('select * from uRequest')
+    db.any('select * from tbl_request')
       .then(function (data) {
         res.status(200)
           .json({
@@ -37,7 +40,7 @@ function getAllRequests(req, res, next) {
 
 function getSingleRequest(req, res, next) {
     var reqID = parseInt(req.params.id);
-    db.one('select * from uRequest where id = $1', reqID)
+    db.one('select * from tbl_request where id = $1', reqID)
       .then(function (data) {
         res.status(200)
           .json({
@@ -55,7 +58,7 @@ function getSingleRequest(req, res, next) {
 
 function createRequest(req, res, next) {
     req.body.age = parseInt(req.body.age);
-    db.none('insert into uRequest(userId, rsubject, rdescription, rstatus, rpriority)' +
+    db.none('insert into tbl_request(userId, rsubject, rdescription, rstatus, rpriority)' +
         'values(${userId}, ${rsubject}, ${rdescription}, ${rstatus}, ${rpriority})',
       req.body)
       .then(function () {
@@ -74,7 +77,7 @@ function createRequest(req, res, next) {
   // PUT
 
 function updateRequest(req, res, next) {
-    db.none('update uRequest set userId=$1, rsubject=$2, rdescription=$3, rstatus=$4 , rpriority=$5 where id=$5',
+    db.none('update tbl_request set userId=$1, rsubject=$2, rdescription=$3, rstatus=$4 , rpriority=$5 where id=$5',
       [parseInt(req.body.userId), req.body.rsubject, req.body.rdescription,
         req.body.rstatus, req.body.rpriority, parseInt(req.params.id)])
       .then(function () {
@@ -93,7 +96,7 @@ function updateRequest(req, res, next) {
 
 function removeRequest(req, res, next) {
     var reqID = parseInt(req.params.id);
-    db.result('delete from uRequest where id = $1', reqID)
+    db.result('delete from tbl_request where id = $1', reqID)
       .then(function (result) {
         /* jshint ignore:start */
         res.status(200)

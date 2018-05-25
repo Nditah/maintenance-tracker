@@ -4,10 +4,10 @@ var express = require('express');
 var app = express();
 
 function listening() {
-    console.log('Maintenance API is listening on port 3000!');
+    console.log('Maintenance API is listening on port 5000!');
 }
 
-var server = app.listen(3000, listening);
+var server = app.listen(5000, listening);
 
 app.get('/users', model.getAllRequests);
 

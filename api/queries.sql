@@ -5,13 +5,13 @@ CREATE DATABASE maintenance;
 
 CREATE TABLE tbl_user (
   ID SERIAL PRIMARY KEY,
-  uTYPE VARCHAR,
-  uemail VARCHAR(50) NOT NULL ,
+  uTYPE VARCHAR(20),
+  uemail VARCHAR(100) NOT NULL ,
   upassword VARCHAR(200) NOT NULL ,
-  ufirstName VARCHAR,
-  ulastName VARCHAR,
-  uphone VARCHAR,
-  uaddress VARCHAR,
+  ufirstName VARCHAR(200),
+  ulastName VARCHAR(200),
+  uphone VARCHAR(15),
+  uaddress VARCHAR(500),
   ucreatedOn DATE DEFAULT Now()
 );
 
@@ -23,14 +23,14 @@ INSERT INTO tbl_user (utype, uemail, upassword, ufirstName, ulastName, uphone, u
 
 CREATE TABLE tbl_request (
   ID SERIAL PRIMARY KEY,
-  userId VARCHAR(10) NOT NULL ,
-  rsubject VARCHAR NOT NULL,
-  rdescription VARCHAR,
-  rstatus VARCHAR,
-  rpriority VARCHAR,
+  userId INTEGER NOT NULL ,
+  rsubject VARCHAR (200) NOT NULL,
+  rdescription VARCHAR(1000),
+  rstatus VARCHAR(20),
+  rpriority VARCHAR(20),
   rcreatedOn DATE DEFAULT Now()
 );
 
-INSERT INTO requests (userId, rsubject, rdescription, rstatus, rpriority)
-  VALUES (1, 'Ravepay', 'Faulty Api', 'Payment error resulting from faulty api', 'pending', 'low' );
+INSERT INTO tbl_request (userId, rsubject, rdescription, rstatus, rpriority)
+VALUES (1, 'Ravepay Error', 'Payment error resulting from faulty api', 'pending', 'low' );
 

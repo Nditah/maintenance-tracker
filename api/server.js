@@ -3,7 +3,10 @@
 * It require(s) the model.js that contacts call backs
 */
 
-const model = require('./model');
+// const model = require('./model-json');
+ const model = require('./model-pgsql');
+ var bodyParser = require('body-parser');
+
 
 var express = require('express');
 var app = express();
@@ -15,35 +18,40 @@ function listening() {
 var server = app.listen(3000, listening);
 
 
-app.use(express.static('website'));
+app.use(express.static('./../ui'));
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
-app.get('/users', model.sendUsers);
+//app.get('/users', model.sendUsers);
 
 
 // View a particular user details
-app.get('/users/:userId', model.sendUser);
+//app.get('/users/:userId', model.sendUser);
 
 
 // View all rquests from all users
-app.get('/requests', model.sendRequests);
+app.get('/requests', model.readAllRequests);
 
 
 // View a particular request details
-app.get('/requests/:requestId', model.sendRequest);
+//app.get('/requests/:requestId', model.sendRequest);
 
 
 // View all requests from a particular user
-app.get('/user/requests/:userId?', model.sendUserRequests);
+app.get('/users/requests/:userId?', model.readAllUserRequests);
 
 
 // Create a user /users/:type/:email/:password/:firstName/:lastName/:phone/:address?
-app.post('/users', model.createUser);
+// app.post('/users', model.createUser);
+
 
 // Create Request users/requests/:user/:subject/:description/:status/:priority
 app.post('/users/requests', model.createRequest);
 
 // Update Maintenance Request /users/requests/:id/:user/:subject/:description/:status/:priority'
-app.put('/users/requests/:id', model.updateRequest);
+app.put('/users/requests/:requestId', model.updateRequest);
 
 
 /*

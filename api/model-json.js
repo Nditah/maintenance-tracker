@@ -10,7 +10,7 @@ let database = require('./database');
 let requestsTable = database.RequestsTable;
 let usersTable = database.UsersTable;
 
-console.log(usersTable );
+// console.log(usersTable );
 
 let userRecord = { "id": 0, "type": "user", "email": "", "password": "", "firstName": "", "lastName": "", "phone": "", "address": "", "createdOn": "" };
 let requestRecord = { "id": 0, "user": 0, "subject": "", "description": "", "status": "Pending", "priority": "Normal", "createdOn": "" };
@@ -51,7 +51,7 @@ function sendUser(request, response) {
 }
 
 
-function sendRequests(request, response) {
+function readAllRequests(request, response) {
     response.send(requestsTable);
 }
 
@@ -70,7 +70,7 @@ function sendRequest(request, response) {
 }
 
 
-function sendUserRequests(request, response) {
+function readAllUserRequests(request, response) {
     const data = request.params;
     const userId = data.userId || 1 ;
     let userRequests = getUserRequests(userId);
@@ -189,7 +189,7 @@ function _createRequest(newRequest) {
 
 function createRequest(request, response) {
     // create new user objects
-    const data = request.params;
+    const data = request.body;
     requestRecord.id = requestsTable.length + 1;
     requestRecord.user = data.user;
     requestRecord.subject = data.subject;
@@ -245,9 +245,9 @@ module.exports = {
     updateDatabase,
     sendUsers,
     sendUser,
-    sendRequests,
+    readAllRequests,
     sendRequest,
-    sendUserRequests,
+    readAllUserRequests,
     getUserRequests,
     today,
     createUser,
