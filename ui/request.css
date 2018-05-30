@@ -22,6 +22,7 @@
     background: #57B3F1;
 }
 
+
 input.txt {
     border: 0;
     padding: 1em;
@@ -69,7 +70,7 @@ textarea.txt {
 select.txt {
     border: 0;
     padding: 1em;
-    width: 85%;
+    width: 87%;
     margin-bottom: 2em;
 }
 
@@ -116,7 +117,7 @@ button.status-pending {
     float: right;
 }
 
-button.status-rejected {
+button.status-disapprove {
     background-color: rgb(240, 134, 13);
     color: white;
     padding: 4px 4px;
@@ -128,7 +129,7 @@ button.status-rejected {
 }
 
 
-button.status-approved {
+button.status-approve {
     background-color: #4CAF50;
     color: white;
     padding: 4px 4px;
@@ -140,7 +141,7 @@ button.status-approved {
 }
 
 
-button.status-resolved {
+button.status-resolve {
     background-color: rgb(175, 170, 170);
     color: white;
     padding: 4px 4px;
@@ -208,6 +209,7 @@ a.request:active {
     font-size: small;
     background-color: #003A61;
     padding:8px;
+    width:83%;
 }
 
 
@@ -270,3 +272,6 @@ input:checked + .slider:before {
   border-radius: 50%;
 }
 
+.requestForm{
+    width: inherit;
+}

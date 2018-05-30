@@ -1,0 +1,30 @@
+{
+  "name": "api1",
+  "version": "1.0.0",
+  "description": "Maintenance Tracter Api",
+  "main": "server.js",
+  "repository": "https://github.com/Nditah/maintenance-tracker.git",
+  "scripts": {
+    "start": "nodemon api/app/starter.js",
+    "test": "mocha api/test/*.js"
+  },
+  "keywords": ["rest, api, node, express, es6, babel, postgresql"],
+  "author": "Nditah Samweld <nditah@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.3",
+    "jsonwebtoken": "^8.2.1",
+    "morgan": "^1.9.0",
+    "nodemon": "^1.17.4",
+    "pg": "^6.4.2"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  },
+  "homepage": "https://nditah.github.io/maintenance-tracker/ui/index.html"
+}

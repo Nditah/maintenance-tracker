@@ -11,8 +11,8 @@ regarding repair or maintenance requests and monitor the status of their request
     <meta name="author" content="Nditah">
     <link rel="icon" href="./images/logo.png" sizes="16x16" type="image/png">
 
-    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="request.css">
+   <!-- <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="request.css"> -->
 </head>
 
 <body>
@@ -84,9 +84,10 @@ regarding repair or maintenance requests and monitor the status of their request
             <div class="col">
                 <p class="feedback" id="feedback">Create a new repair / maintenance request or click on the record on the table to view details &nbsp; </p>
 
-                <form name="requestForm" id="requestForm" method="POST">
+                <form name="requestForm" id="requestForm" class="requestForm" method="POST">
                     <!-- <input type="text" class="txt" name="requestStatus" id="requestStatus" placeholder="Request Status"> -->
                     <input type="text" class="txt" name="requestSubject" id="requestSubject" placeholder="Request Subject" required>
+                    <input type="hidden" class="txt" name="userId" id="userId" value="1" />
                     <textarea class="txt" name="requestDescription" id="requestDescription" placeholder="Request Description" required></textarea>
                     <select class="txt" name="requestPriority" id="requestPriority" required>
                         <option value="" disabled selected>Select request priority</option>
@@ -102,15 +103,17 @@ regarding repair or maintenance requests and monitor the status of their request
     </section>
 
 
-    <script src="jquery.min.js"></script>
+    <!-- jQuery library -->
+    <!-- <script src="jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Activity Script -->
     <script src="request-script.js"></script>
     <script>
-
+        let userId = 1;
         $(document).ready(function () {
-            readRequest();
-
+            request_user(userId); 
         });
-
     </script>
 
 </body>

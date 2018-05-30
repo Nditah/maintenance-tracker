@@ -1,94 +1,115 @@
-/*
-I learnt this from a simple tutorial at:
-https://docs.microsoft.com/en-us/azure/postgresql/connect-nodejs
+//import * as user_model from '../models/requestModel';
+import {client, pool} from '../config/dbCon'
+import {validate_req} from '../middlewares/lib'
+// import jwt from 'jsonwebtoken'
+import jwtAuth from './../middlewares/auth'
 
-*/
-
-const pg = require('pg');
-
-const Host = "ec2-54-217-208-52.eu-west-1.compute.amazonaws.com";
-const Database = "d8d2grf4h559oa";
-const User = "bfxyknabiikqnx";
-const Port = "5432";
-const Password = "4597af2a1387cf3aee62700919239a43ecba83a1e82738add365007348b7f06c";
-const URI = "postgres://bfxyknabiikqnx:4597af2a1387cf3aee62700919239a43ecba83a1e82738add365007348b7f06c@ec2-54-217-208-52.eu-west-1.compute.amazonaws.com:5432/d8d2grf4h559oa";
-
-
-const config = {
-    host: Host,
-    user: User,
-    password: Password,
-    database: Database,
-    port: 5432,
-    ssl: true
+exports.index = function(req, res) {
+    res.send('NOT IMPLEMENTED: User Site Home Page');
 };
 
-const client = new pg.Client(config);
-
-client.connect(err => {
-    if (err) throw err;
-    else {
-        // Ok. Every thing is cool here   
-        //   createDatabase();
+// Handle User create on POST.
+exports.login = (req, res) => {
+    const user = {
+        id: 1,
+        utype: 'admin',
+        uemail: 'user@andela.com' ,
+        upassword: 'passward' ,
+        ufirstName: 'Fred',
+        ulastName: 'Edward',
+        uphone: '08025532383',
+        uaddress: 'Agungi, Lekki, Lagos',
+        ucreatedOn: '2018-12-27'
     }
-});
 
-let requestRecord = { "id": 0, "user": 0, "subject": "", "description": "", "status": "Pending", "priority": "Normal", "createdOn": "" };
+    jwtAuth(user, res);
+    /*
+    jwt.sign({user}, 'secretKey', { expiresIn: '30s'}, (err, token) => {
+        res.json({token});
+    });
+    */
+};
 
-function createDatabase() {
-    const query = `
+// Handle User create on POST.
+exports.signup = function(req, res) {
+    res.send('NOT IMPLEMENTED: User Signup');
+};
+        
 
-    -- User table;
-    DROP TABLE IF EXISTS tbl_user;
-    CREATE TABLE tbl_user (
-        ID SERIAL PRIMARY KEY,
-        uTYPE VARCHAR(20),
-        uemail VARCHAR(100) NOT NULL ,
-        upassword VARCHAR(200) NOT NULL ,
-        ufirstName VARCHAR(200),
-        ulastName VARCHAR(200),
-        uphone VARCHAR(15),
-        uaddress VARCHAR(500),
-        ucreatedOn DATE DEFAULT Now()
-      );
-      
-      INSERT INTO tbl_user (utype, uemail, upassword, ufirstName, ulastName, uphone, uaddress )
-        VALUES ('admin', 'admin@andela.com', 'pass', 'Scott', 'Tiger', '123-456-777', 'Upper Str.' );
-      
-      
-      -- Request table;
-      DROP TABLE IF EXISTS tbl_request;
-      CREATE TABLE tbl_request (
-        ID SERIAL PRIMARY KEY,
-        userId INTEGER NOT NULL ,
-        rsubject VARCHAR (200) NOT NULL,
-        rdescription VARCHAR(1000),
-        rstatus VARCHAR(20),
-        rpriority VARCHAR(20),
-        rcreatedOn DATE DEFAULT Now()
-      );
-      
-      INSERT INTO tbl_request (userId, rsubject, rdescription, rstatus, rpriority)
-      VALUES (1, 'Ravepay Error', 'Payment error resulting from faulty api', 'pending', 'low' );
-    `;
-
-    client
-        .query(query)
-        .then(() => {
-            console.log('Table created successfully!');
-            client.end(console.log('Closed client connection'));
-        })
-        .catch(err => console.log(err))
-        .then(() => {
-            console.log('Finished execution, exiting now');
-            process.exit();
+// Display list of all Users.
+exports.user_all = (req, res, next) => {
+    const results = [];
+    // SQL Query > Select Data
+    const query = client.query('SELECT * FROM tbl_user ORDER BY id ASC;');
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      //done();
+      //return res.json(results);
+      return res.status(200).json({
+            message: 'all user records from maintenance tracker api',
+            data:results
         });
-}
+
+    });
+};
+
+// Display detail page for a specific User.
+exports.user_one = (req, res, next) => {
+    const results = [];
+    const userId = validate_req(parseInt(req.params.userId), req, res );
+    if(!userId > 0){
+        res.statusMessage = "Current request id is invalid. An integer value is expected";
+        return res.status(422).json({
+                message: `Invalid request ${userId} `,
+                data:results
+            });
+        
+    }
+    // SQL Query > Select Data
+    const query = client.query(`SELECT * FROM tbl_user WHERE id=${userId} ;`)
+    // Stream results back one row at a time
+    query.on('row', (row) => {
+      results.push(row);
+    });
+    // After all data is returned, close connection and return results
+    query.on('end', () => {
+      //done();
+      //return res.json(results);
+      return res.status(200).json({
+            message: 'all user records from maintenance tracker api',
+            data:results
+        });
+
+    });
+};
+
+
+// Display User update form on PUT.
+exports.update_user = (req, res) => {
+    jwt.verify(req.token, 'secretKey', (err, authData) => {
+        if(err) {
+            res.sendStatus(403);
+        } else {
+            res.status(200).json({
+                message: 'User profile updated...',
+                data:authData
+            });
+        }
+    });
+
+};
+
+
+/*
 
 async function createRequest(request, response) {
     // create new user objects
     const data = request.body;
-    const userId = parseInt(data.user) || 1;
+    const userId = parseInt(data.user) ;
     const rsubject = data.subject || "unspecified" ;
     const rdescription = data.description || "";
     const rstatus = data.status || "pending";
@@ -98,17 +119,7 @@ async function createRequest(request, response) {
     const text = `INSERT INTO tbl_request (userId, rsubject, rdescription, rstatus, rpriority)
                     VALUES($1, $2, $3, $4, $5) RETURNING * `;
     const values = [userId, rsubject, rdescription, rstatus, rpriority];
-    /*
-    // 1. callback
-    client.query(text, values, (err, res) => {
-        if (err) {
-            console.log(err.stack)
-        } else {
-            const reply = res.rows[0];
-            console.log(reply);
-        }
-    })
-   
+    
     // 3. async/await
     try {
         const res = await pool.query(text, values)
@@ -117,7 +128,7 @@ async function createRequest(request, response) {
     } catch (err) {
         console.log(err.stack)
     }    
-    */
+   
 
     // 2. promise
     client.query(text, values)
@@ -139,7 +150,7 @@ async function readAllRequests(request, response) {
     const { rows } = await client.query(sql)
     response.send(JSON.stringify(rows));
 
-    /*
+    //*
     client.query(sql)
         .then(res => {
             const rows = res.rows;
@@ -155,7 +166,7 @@ async function readAllRequests(request, response) {
             console.log(err);
         });
 
-        */
+       
 }
 
 
@@ -165,7 +176,7 @@ async function readAllUserRequests(request, response) {
     const userId = 1;
     //console.log(`Running query to PostgreSQL server: ${config.host}`);
 
-    const sql = "SELECT * FROM tbl_request WHERE userId = " + userId + ";";
+    const sql = `SELECT * FROM tbl_request WHERE userId = ${userId} ;`;
     const { rows } = await client.query(sql)
     response.send(JSON.stringify(rows));
     /*
@@ -182,7 +193,7 @@ async function readAllUserRequests(request, response) {
         .catch(err => {
             console.log(err);
         });
-        */
+        
 }
 
 
@@ -191,7 +202,7 @@ function readRequest(requestId) {
     const id = parseInt(requestId);
     console.log(`Running query to PostgreSQL server: ${config.host}`);
 
-    const query = "SELECT * FROM tbl_request WHERE id = " + id + ";";
+    const query = "SELECT * FROM tbl_request WHERE id = ${id } ;";
 
     client.query(query)
         .then(res => {
@@ -209,7 +220,36 @@ function readRequest(requestId) {
 }
 
 
+// By user
 function updateRequest(request, response) {
+    // create new user objects
+    const data = request.body;
+    const id = parseInt(request.params.requestId);
+    const userId = parseInt(data.user);
+    const rsubject = data.subject;
+    const rdescription = data.description;
+    const rstatus = data.status || "pending";
+    const rpriority = data.priority || "low";
+
+    // SQL Query > Update Data
+    const sql = `UPDATE tbl_request SET userId=($1), rsubject=($2), 
+                rdescription=($3), rpriority=($5) WHERE id=($6) AND rstatus='pending' `;
+    const values = [userId, rsubject, rdescription, rstatus, rpriority, id];
+
+    client.query(sql, values)
+        .then(result => {
+            const reply = result.rowCount;
+            response.send(`Rows affected: ${reply}`);
+            console.log(`Rows affected: ${reply}`);
+        })
+        .catch(err => {
+            console.log(err);
+            throw err;
+        });
+}
+
+// By Admin
+function updateRequestAdmin(request, response) {
     // create new user objects
     const data = request.body;
     const id = parseInt(request.params.requestId);
@@ -235,14 +275,12 @@ function updateRequest(request, response) {
         });
 }
 
-
-
  
 // '/requests/:requestId/approve' 
 function approveRequest(request, response) {
         // create new user objects
         const id = parseInt(request.params.requestId);
-        const userId = parseInt(request.body.user); // Authentication and Authorization
+        const userId = parseInt(request.body.user); // Authentication and Userization
 
         // SQL Query > Update Data
         const sql ="UPDATE tbl_request SET rstatus='approved' WHERE id=($1) AND rstatus='pending' ";
@@ -264,7 +302,7 @@ function approveRequest(request, response) {
 function disapproveRequest(request, response) {
          // create new user objects
          const id = parseInt(request.params.requestId);
-         const userId = parseInt(request.body.user); // Authentication and Authorization
+         const userId = parseInt(request.body.user); // Authentication and Userization
  
          // SQL Query > Update Data
          const sql ="UPDATE tbl_request SET rstatus='rejected' WHERE id=($1) AND rstatus='pending' ";
@@ -286,7 +324,7 @@ function disapproveRequest(request, response) {
 function resolveRequest(request, response) {
          // create new user objects
          const id = parseInt(request.params.requestId);
-         const userId = parseInt(request.body.user); // Authentication and Authorization
+         const userId = parseInt(request.body.user); // Authentication and Userization
  
          // SQL Query > Update Data
          const sql ="UPDATE tbl_request SET rstatus='resolved' WHERE id=($1) AND rstatus !='rejected' ";
@@ -341,7 +379,7 @@ function deleteRequest(requestId) {
 // PUT /users/requests/<requestId>
 // updateRequest(requestObject);
 
-/*
+
 PUT /requests/<requestId>/approve
 Approve request This is available only to admin users. 
 When this endpoint is called, the status of the request should be pending.
@@ -351,21 +389,22 @@ Disapprove request This is available only to admin users.
 
 PUT /requests/<requestId>/resolve
 Resolve request This is available only to admin users.
-*/
+
 
 // deleteRequest(requestId);
 
 
 module.exports = {
-    createDatabase,
     createRequest,
     readAllRequests,
     readAllUserRequests,
     readRequest,
     updateRequest,
+    updateRequestAdmin,
     approveRequest,
     disapproveRequest,
     resolveRequest,
     deleteRequest
 }
 
+*/

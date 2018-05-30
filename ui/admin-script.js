@@ -11,12 +11,12 @@ var UsersTable = [
 var	RequestsTable = [
 		{ "id": 1, "user": 1, "subject": "Webpay", "description": "Typescript Wrapper", "status": "Pending", "priority": "Low", "createdOn": "2018-05-12" },
 		{ "id": 2, "user": 2, "subject": "Erlang Server", "description": "Chat Messenger", "status": "Pending", "priority": "High", "createdOn": "2018-05-02" },
-		{ "id": 3, "user": 3, "subject": "Django", "description": "Python framework", "status": "Approved", "priority": "Normal", "createdOn": "2018-05-11" },
-		{ "id": 4, "user": 1, "subject": "Java", "description": "Spring JEE", "status": "Approved", "priority": "Low", "createdOn": "2018-05-12" },
-		{ "id": 5, "user": 2, "subject": "Rest API", "description": "GraphQL Integration", "status": "Rejected", "priority": "Low", "createdOn": "2018-05-12" },
-		{ "id": 6, "user": 3, "subject": "Rust", "description": "Go Rust Speed Test", "status": "Rejected", "priority": "High", "createdOn": "2018-05-14" },
-		{ "id": 7, "user": 1, "subject": "Andela", "description": "EPIC All the Way", "status": "Resolved", "priority": "Low", "createdOn": "2018-05-17" },
-		{ "id": 8, "user": 3, "subject": "Samweld", "description": "3Dcoder Top 1%", "status": "Resolved", "priority": "High", "createdOn": "2018-05-21" }
+		{ "id": 3, "user": 3, "subject": "Django", "description": "Python framework", "status": "Approve", "priority": "Normal", "createdOn": "2018-05-11" },
+		{ "id": 4, "user": 1, "subject": "Java", "description": "Spring JEE", "status": "Approve", "priority": "Low", "createdOn": "2018-05-12" },
+		{ "id": 5, "user": 2, "subject": "Rest API", "description": "GraphQL Integration", "status": "Disapprove", "priority": "Low", "createdOn": "2018-05-12" },
+		{ "id": 6, "user": 3, "subject": "Rust", "description": "Go Rust Speed Test", "status": "Disapprove", "priority": "High", "createdOn": "2018-05-14" },
+		{ "id": 7, "user": 1, "subject": "Andela", "description": "EPIC All the Way", "status": "Resolve", "priority": "Low", "createdOn": "2018-05-17" },
+		{ "id": 8, "user": 3, "subject": "Samweld", "description": "3Dcoder Top 1%", "status": "Resolve", "priority": "High", "createdOn": "2018-05-21" }
 	];
 
 // Read the request and populate table

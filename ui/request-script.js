@@ -1,3 +1,25 @@
+// extending jquery
+jQuery.each( [ "put", "delete" ], function( i, method ) {
+	jQuery[ method ] = function( url, data, callback, type ) {
+	  if ( jQuery.isFunction( data ) ) {
+		type = type || callback;
+		callback = data;
+		data = undefined;
+	  }
+  
+	  return jQuery.ajax({
+		url: url,
+		type: method,
+		dataType: type,
+		data: data,
+		success: callback
+	  });
+	};
+});
+
+
+const root = 'http://localhost:3000/api/v1';
+
 function today() {
     return new Date().toJSON().slice(0, 10);
 }
@@ -9,33 +31,52 @@ var UsersTable = [
 ];
 
 var	RequestsTable = [
-		{ "id": 1, "user": 1, "subject": "Webpay", "description": "Typescript Wrapper", "status": "Pending", "priority": "Low", "createdOn": "2018-05-12" },
-		{ "id": 2, "user": 2, "subject": "Erlang Server", "description": "Chat Messenger", "status": "Pending", "priority": "High", "createdOn": "2018-05-02" },
-		{ "id": 3, "user": 3, "subject": "Django", "description": "Python framework", "status": "Approved", "priority": "Normal", "createdOn": "2018-05-11" },
-		{ "id": 4, "user": 1, "subject": "Java", "description": "Spring JEE", "status": "Approved", "priority": "Low", "createdOn": "2018-05-12" },
-		{ "id": 5, "user": 2, "subject": "Rest API", "description": "GraphQL Integration", "status": "Rejected", "priority": "Low", "createdOn": "2018-05-12" },
-		{ "id": 6, "user": 3, "subject": "Rust", "description": "Go Rust Speed Test", "status": "Rejected", "priority": "High", "createdOn": "2018-05-14" },
-		{ "id": 7, "user": 1, "subject": "Andela", "description": "EPIC All the Way", "status": "Resolved", "priority": "Low", "createdOn": "2018-05-17" },
-		{ "id": 8, "user": 3, "subject": "Samweld", "description": "3Dcoder Top 1%", "status": "Resolved", "priority": "High", "createdOn": "2018-05-21" }
+		{ "id": 1, "user": 1, "rsubject": "Webpay", "rdescription": "Typescript Wrapper", "rstatus": "Pending", "rpriority": "Low", "rcreatedOn": "2018-05-12" },
+		{ "id": 2, "user": 2, "rsubject": "Erlang Server", "rdescription": "Chat Messenger", "rstatus": "Pending", "rpriority": "High", "rcreatedOn": "2018-05-02" },
+		{ "id": 3, "user": 3, "rsubject": "Django", "rdescription": "Python framework", "rstatus": "Approve", "rpriority": "Normal", "rcreatedOn": "2018-05-11" },
+		{ "id": 4, "user": 1, "rsubject": "Java", "rdescription": "Spring JEE", "rstatus": "Approve", "rpriority": "Low", "rcreatedOn": "2018-05-12" },
+		{ "id": 5, "user": 2, "rsubject": "Rest API", "rdescription": "GraphQL Integration", "rstatus": "Disapprove", "rpriority": "Low", "rcreatedOn": "2018-05-12" },
+		{ "id": 6, "user": 3, "rsubject": "Rust", "rdescription": "Go Rust Speed Test", "rstatus": "Disapprove", "rpriority": "High", "rcreatedOn": "2018-05-14" },
+		{ "id": 7, "user": 1, "rsubject": "Andela", "rdescription": "EPIC All the Way", "rstatus": "Resolve", "rpriority": "Low", "rcreatedOn": "2018-05-17" },
+		{ "id": 8, "user": 3, "rsubject": "Samweld", "rdescription": "3Dcoder Top 1%", "rstatus": "Resolve", "rpriority": "High", "rcreatedOn": "2018-05-21" }
 	];
 
-// Read the request and populate table
-function readRequest() {
-	$('#tblRequest tr').not(':first').not(':last').remove();
-	let tblRequest = '';
-	for(let i = 0; i < RequestsTable.length; i++) {
-		tblRequest += '<tr><td>' + (i+1).toString() + '</td>' +
-						'<td>' + RequestsTable[i].id + '</td>' +
-						'<td>' + RequestsTable[i].createdOn + '</td>' + 
-						'<td><a class="request" href="#" onClick="getRequestDetails(' + RequestsTable[i].id + ');">' 
-						+ RequestsTable[i].subject + '</a></td>' +
-						'<td><button class="status-'+ RequestsTable[i].status.toLowerCase() 
-						+ '" onClick="getRequestDetails(' + RequestsTable[i].id + ');">' 
-						+ RequestsTable[i].status + '</button></td>' +
-					'</tr>';
-		}					
-	$('#tblRequest tr').first().after(tblRequest);
+// 3. Fetch all the requests of a logged in user
+function request_user(userId) {
+	$.ajax({
+		url: root +'/users/requests',
+		headers: {
+			'Authorization':'Basic xxxxxxxxxxxxx',
+			'X_CSRF_TOKEN':'xxxxxxxxxxxxxxxxxxxx',
+			'Content-Type':'application/json',
+			'userId':userId
+		},
+		method: 'GET',
+		dataType: 'json',
+		data: {},
+		success: function(data){
+		  console.log('succes: '+data);
+		  RequestsTable = data.data;
+		  $('#tblRequest tr').not(':first').not(':last').remove();
+		  let tblRequest = '';
+		  for(let i = 0; i < RequestsTable.length; i++) {
+			  tblRequest += '<tr><td>' + (i+1).toString() + '</td>' +
+							  '<td>' + RequestsTable[i].id + '</td>' +
+							  '<td>' + RequestsTable[i].rcreatedOn + '</td>' + 
+							  '<td><a class="request" href="#" onClick="getRequestDetails(' + RequestsTable[i].id + ');">' 
+							  + RequestsTable[i].rsubject + '</a></td>' +
+							  '<td><button class="status-'+ RequestsTable[i].rstatus.toLowerCase() 
+							  + '" onClick="getRequestDetails(' + RequestsTable[i].id + ');">' 
+							  + RequestsTable[i].rstatus + '</button></td>' +
+						  '</tr>';
+			  }					
+		  $('#tblRequest tr').first().after(tblRequest);
+		}
+	  });
+
+ 
 }
+
 
 // Get the details of a particular Request
 function getRequestDetails(request_Id) {
@@ -45,9 +86,9 @@ function getRequestDetails(request_Id) {
 				if (RequestsTable[i].id == id) {
 					// return RequestsTable[i];
 					console.log(RequestsTable[i]);
-					$('#requestSubject').val(RequestsTable[i].subject);
-					$('#requestDescription').val(RequestsTable[i].description);
-					$('#requestPriority').val(RequestsTable[i].priority);
+					$('#requestSubject').val(RequestsTable[i].rsubject);
+					$('#requestDescription').val(RequestsTable[i].rdescription);
+					$('#requestPriority').val(RequestsTable[i].rpriority);
 					//$('#requestUser').val(RequestsTable[i].user);
 					 break; 
 				}
@@ -63,7 +104,8 @@ function getRequestDetails(request_Id) {
 	function createRequest() { 
 		//document.getElementById("requestForm")
 		//.addEventListener('submit', function(event){event.preventDefault();});
-	
+		let userId = 1;
+
 		let  requestSubject = $('#requestSubject').val();
 		if (requestSubject == "") {
 			$('.feedback').html("Request Subject must be filled out");
@@ -83,17 +125,35 @@ function getRequestDetails(request_Id) {
 			return false;
 		}  
 		
-		const requestId = RequestsTable.length;
-		const newRequest ={ "id": requestId, 
-							"user": 2, 
+		// const requestId = RequestsTable.length; // new id but Auto Incr in DB
+		const newRequest ={ "user": userId, 
 							"subject": requestSubject, 
 							"description": requestDescription, 
 							"status": "Pending", 
 							"priority": requestPriority, 
 							"createdOn": today() 
 						};
-		RequestsTable.unshift(newRequest);
-	 	readRequest();
+		//RequestsTable.unshift(newRequest);
+		console.log(JSON.stringify(newRequest));
+	// Add record
+	$.post(root + "/users/requests", { newRequest },
+		function (data, status) {
+			console.log(data.message);
+			let feedback = "<div class='alert alert-success  alert-sm'>";
+			feedback += "<a href='#' class='close' data-dismiss='alert' aria-label='close'>&times;</a>";
+			feedback += " New Record Added" ;
+			feedback += "</div>";
+			
+			$('.feedback').html(feedback);
+
+			// clear fields from the popup
+			$("#requestSubject").val("");
+			$("#requestDescription").val("");
+			$("#requestPriority").val("");
+
+		});
+		
+	 	request_user(userId);
 	}
 
 	console.log("Loading from request.js")
