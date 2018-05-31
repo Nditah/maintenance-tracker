@@ -1,7 +1,7 @@
 export const callback = callback || (() => {});    // ok
 
 export const validateRequest = (input, req, res) => {
-    const param = input.trim();
+    const param = input;
     if(param === null || param === undefined || param ==="" ){
         return res.status(422).json({
             message: `Invalid request. The input ${param} is required`,

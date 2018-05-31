@@ -12,9 +12,9 @@ import morgan from 'morgan'
 
 /// import routes  ///
 
-import index_router from './../routes/index'
-import user_router from './../routes/userRoute'
-import request_router from './../routes/requestRoute'
+
+import userRoute from './routes/userRoute'
+import requestRoute from './routes/requestRoute'
 
 env.config();
 const PORT= process.env.PORT
@@ -33,9 +33,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/', index_router);
-app.use('/api/v1', user_router);
-app.use('/api/v1', request_router); 
+app.use('/api/v1', userRoute);
+app.use('/api/v1', requestRoute); 
 
 // responds when a GET request is made to the homepage
 app.get('/', function (req, res) {
@@ -43,4 +42,3 @@ app.get('/', function (req, res) {
 })
 
 app.listen(PORT, () => console.log(`Api App listening on port ${PORT}!`))
-

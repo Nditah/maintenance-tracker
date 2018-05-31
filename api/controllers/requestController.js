@@ -18,7 +18,7 @@ exports.index = function(req, res) {
 };
 
 // Display list of all Requests.
-exports.request_all = function(req, res, next) {
+exports.getRequestAll = function(req, res, next) {
     const results = [];
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM tbl_request ORDER BY id ASC;');
@@ -39,7 +39,7 @@ exports.request_all = function(req, res, next) {
 };
 
 // Display detail page for a specific Request.
-exports.request_one = function(req, res, next) {
+exports.getRequestOne = function(req, res, next) {
     const request_id = validateRequest(parseInt(req.params.id), req, res );
     if(!request_id > 0){
         res.statusMessage = "Current request id is invalid. An integer value is expected";
@@ -70,7 +70,7 @@ exports.request_one = function(req, res, next) {
 
 
 //3. Fetch all the requests of a logged in user
-exports.request_user = function(req, res, next) {
+exports.getRequestUser = function(req, res, next) {
     const userId = parseInt(req.headers['userId']) ;
     console.log("Request header info: " + req.headers)
     if(!userId > 0){
@@ -102,7 +102,7 @@ exports.request_user = function(req, res, next) {
 
 
 // Handle Request create on POST.
-exports.request_create = function(req, res, next) {
+exports.postRequestCreate = function(req, res, next) {
     const data = req.body;
     const userId = validateRequest(parseInt(data.user), req, res) ;
     const subject = validateRequest(data.subject, req, res) ;
@@ -115,7 +115,7 @@ exports.request_create = function(req, res, next) {
         // Parameterized query
         const text = `INSERT INTO tbl_request (userId, rsubject, rdescription, rstatus, rpriority)
         VALUES($1, $2, $3, $4, $5) RETURNING * `;
-        const values = [userId, rsubject, rdescription, rstatus, rpriority];
+        const values = [userId, subject, description, status, priority];
 
         client.query(text, values)
         .then(result => {
@@ -124,7 +124,7 @@ exports.request_create = function(req, res, next) {
 
             if(newRequest) {
              return  res.status(200).json({
-                    message: `New request is created successfully `,
+                    message: `New request has been created `,
                     data:newRequest
                 });
             } else {
@@ -138,7 +138,7 @@ exports.request_create = function(req, res, next) {
 };
 
 // Display Request update form on PUT.
-exports.request_update = function(req, res, next) {
+exports.putRequestUpdate = function(req, res, next) {
     const data = req.body;
     const id = validateRequest(parseInt(data.id), req, res) ;
     const userId = validateRequest(parseInt(data.user), req, res) ;
@@ -178,19 +178,114 @@ exports.request_update = function(req, res, next) {
 
 
 // Display Request approve form on PUT.
-exports.request_approve = function(req, res) {
-    res.send('NOT IMPLEMENTED: request_approve');
+exports.putRequestApprove = function(req, res, next) {
+    const data = req.body;
+    const id = validateRequest(parseInt(data.id), req, res) ;
+    const userId = validateRequest(parseInt(data.user), req, res) ;
+    const subject = validateRequest(data.subject, req, res) ;
+    const description = validateRequest(data.description, req, res) ;
+    const status = validateRequest(data.status, req, res) ;
+    const priority = validateRequest(data.priority, req, res) ;
+
+    if(!userId > 0){
+        res.statusMessage = "Current request id is invalid. An integer value is expected";
+        res.status(422).json({
+                message: `Invalid request ${request_id} `,
+                data:results
+            });
+    }
+
+        // SQL Query > Update Data
+        const sql = `UPDATE tbl_request SET userId=($1), rsubject=($2), 
+        rdescription=($3), rpriority=($5) WHERE id=($6) AND rstatus='pending' `;
+        const values = [userId, subject, description, status, priority, id];
+
+        client.query(sql, values)
+        .then(result => {
+            const output = result.rowCount;
+            return res.status(200).json({
+                message: `rows affected #${output} on maintenance tracker DB`,
+                data:output
+            });
+            //console.log(`Rows affected: ${reply}`);
+        })
+        .catch(err => {
+            console.log(err);
+            process.exit();
+        });
+
 };
 
 // Display Request approve form on PUT.
-exports.request_disapprove = function(req, res) {
-    res.send('NOT IMPLEMENTED: request_disapprove');
+exports.putRequestDisapprove = function(req, res, next) {
+    const data = req.body;
+    const id = validateRequest(parseInt(data.id), req, res) ;
+    const userId = validateRequest(parseInt(data.user), req, res) ;
+    const subject = validateRequest(data.subject, req, res) ;
+    const description = validateRequest(data.description, req, res) ;
+    const status = validateRequest(data.status, req, res) ;
+    const priority = validateRequest(data.priority, req, res) ;
+
+    if(!userId > 0){
+        res.statusMessage = "Current request id is invalid. An integer value is expected";
+        res.status(422).json({
+                message: `Invalid request ${request_id} `,
+                data:results
+            });
+    }
+
+        // SQL Query > Update Data
+        const sql = `UPDATE tbl_request SET userId=($1), rsubject=($2), 
+        rdescription=($3), rpriority=($5) WHERE id=($6) AND rstatus='pending' `;
+        const values = [userId, subject, description, status, priority, id];
+
+        client.query(sql, values)
+        .then(result => {
+            const output = result.rowCount;
+            return res.status(200).json({
+                message: `rows affected #${output} on maintenance tracker DB`,
+                data:output
+            });
+            //console.log(`Rows affected: ${reply}`);
+        })
+        .catch(err => {
+            console.log(err);
+            process.exit();
+        });
+
 };
 
 // Display Request delete form on DELETE.
-exports.request_delete = function(req, res) {
-    res.send('NOT IMPLEMENTED: Book delete DELETE');
-};
+exports.deleteRequest = function(req, res, next) {
+    const data = req.body;
+    const id = validateRequest(parseInt(data.id), req, res) ;
 
+    if(!id > 0){
+        res.statusMessage = "Current request id is invalid. An integer value is expected";
+        res.status(422).json({
+                message: `Invalid request ${request_id} `,
+                data:results
+            });
+    }
+
+        // SQL Query > Update Data
+        const sql = `DELETE FROM tbl_request WHERE id=($6) AND rstatus='pending' `;
+        const values = [userId, subject, description, status, priority, id];
+
+        client.query(sql, values)
+        .then(result => {
+            const output = result.rowCount;
+            return res.status(200).json({
+                message: `rows affected #${output} on maintenance tracker DB`,
+                data:output
+            });
+            //console.log(`Rows affected: ${reply}`);
+        })
+        .catch(err => {
+            console.log(err);
+            process.exit();
+        });
+
+};
 
 

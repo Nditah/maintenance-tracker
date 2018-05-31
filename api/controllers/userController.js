@@ -62,13 +62,14 @@ exports.postSignup = function(req, res) {
             data:password
         });
     }
-    
+    /*
     if(!(validateEmail(email))){
         return res.status(422).json({
             message: `Invalid email address.`,
             data:email
         });
     }
+    */
 
     const utype = 'user'; // admin 
     // Parameterized query
@@ -84,7 +85,7 @@ exports.postSignup = function(req, res) {
        if(newUser) {
         return  res.status(200).json({
                message: `New user is created successfully `,
-               data:newUser
+               data:{ name:newUser.firstName }
            });
        } else {
            return  res.status(404).json({

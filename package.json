@@ -5,7 +5,7 @@
   "main": "server.js",
   "repository": "https://github.com/Nditah/maintenance-tracker.git",
   "scripts": {
-    "start": "node ./api/server.js",
+    "start": "babel-node ./api/server.js",
     "test": "mocha ./api/test/*.js"
   },
   "keywords": [
@@ -24,6 +24,9 @@
     "pg": "^6.4.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0-beta.49",
+    "@babel/node": "^7.0.0-beta.49",
+    "@babel/preset-env": "^7.0.0-beta.49",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "chai": "^4.1.2",

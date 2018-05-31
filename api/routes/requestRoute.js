@@ -1,12 +1,12 @@
 import express from 'express'
-const request_router = express.Router();
+const requestRoute = express.Router();
 
 // Require controller modules.
 import {index} from '../controllers/requestController'
-import {request_all, request_one} from '../controllers/requestController'
-import {request_disapprove, request_approve} from '../controllers/requestController'
-import {request_create, request_update} from '../controllers/requestController'
-import {request_user, request_delete} from '../controllers/requestController'
+import {getRequestAll, getRequestOne} from '../controllers/requestController'
+import {putRequestDisapprove, putRequestApprove} from '../controllers/requestController'
+import {postRequestCreate, putRequestUpdate} from '../controllers/requestController'
+import {getRequestUser, deleteRequest} from '../controllers/requestController'
 import {verifyToken} from './../middlewares/userAuthentication'
 
 
@@ -14,30 +14,30 @@ import {verifyToken} from './../middlewares/userAuthentication'
 
 
 // GET request home page.
-request_router.get('/', index);
+requestRoute.get('/', index);
 
 // POST request for creating Request.
-request_router.post('/users/requests', request_create);
+requestRoute.post('/users/requests', postRequestCreate);
 
 // DELETE request to delete Request.
-request_router.delete('/requests/:id([0-9]+)/delete', request_delete);
+requestRoute.delete('/requests/:id([0-9]+)/delete', deleteRequest);
 
 // PUT request to update Request. /requests/<requestId>/disapprove
-request_router.put('/requests/:id([0-9]+)/update', request_update);
+requestRoute.put('/requests/:id([0-9]+)/update', putRequestUpdate);
 
 // PUT request to update Request. /requests/<requestId>/disapprove
-request_router.put('/requests/:id([0-9]+)/disapprove', request_disapprove);
+requestRoute.put('/requests/:id([0-9]+)/disapprove', putRequestDisapprove);
 
 // PUT request to update Request. /requests/<requestId>/approve
-request_router.put('/requests/:id([0-9]+)/approve', request_approve);
+requestRoute.put('/requests/:id([0-9]+)/approve', putRequestApprove);
 
 // GET request for one Request.
-request_router.get('/requests/:id([0-9]+)', request_one);
+requestRoute.get('/requests/:id([0-9]+)', getRequestOne);
 
 // GET request for list of all Request items.
-request_router.get('/requests', request_all);
+requestRoute.get('/requests', getRequestAll);
 
 // 3. Fetch all the requests of a logged in user
-request_router.get('/users/requests', request_user);
+requestRoute.get('/users/requests', getRequestUser);
 
-export default request_router;
+export default requestRoute;
