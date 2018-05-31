@@ -3,10 +3,10 @@ const user_route = express.Router();
 
 // Require controller modules.
 import {index} from '../controllers/userController'
-import {login, signup} from '../controllers/userController'
-import {user_one, user_all} from '../controllers/userController'
-import {update_user} from '../controllers/userController'
-import {verifyToken} from './../middlewares/auth'
+import {postLogin, postSignup} from '../controllers/userController'
+import {getUserOne, getUserAll} from '../controllers/userController'
+import {putUpdateUser} from '../controllers/userController'
+import {verifyToken} from './../middlewares/userAuthentication'
 
 /// USER ROUTES /// 
 
@@ -14,19 +14,19 @@ import {verifyToken} from './../middlewares/auth'
 user_route.get('/', index);
 
 // auth/login Login a user
-user_route.post('/auth/login', login);
+user_route.post('/auth/login', postLogin);
 
 // POST Register a user
-user_route.post('/auth/signup', signup);
+user_route.post('/auth/signup', postSignup);
 
 
 // PUT request to update User.
-user_route.put('/users/:userId([0-9]+)/update', verifyToken, update_user);
+user_route.put('/users/:userId([0-9]+)/update', putUpdateUser);
 
 // GET request for one User.
-user_route.get('/users/:userId([0-9]+)', verifyToken, user_one);
+user_route.get('/users/:userId([0-9]+)', verifyToken, getUserOne);
 
 // GET request for list of all User items.
-user_route.get('/users', verifyToken, user_all);
+user_route.get('/users', getUserAll);
 
 module.exports = user_route;

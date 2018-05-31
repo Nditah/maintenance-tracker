@@ -5,12 +5,9 @@
 * to serve as callback for the api methods
 */
 
-import client from '../config/dbCon'
-import crypto from 'crypto'
+import {client} from '../config/dbConnect'
+import {hash} from '../middlewares/helperLibrary'
 
-const hash = (password) => {
-  return crypto.createHash('sha1').update(password).digest('base64')
-}
 
 exports.create = function(name, email, password, cb) {
   var user = {

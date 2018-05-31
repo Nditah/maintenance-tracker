@@ -7,7 +7,7 @@ import {request_all, request_one} from '../controllers/requestController'
 import {request_disapprove, request_approve} from '../controllers/requestController'
 import {request_create, request_update} from '../controllers/requestController'
 import {request_user, request_delete} from '../controllers/requestController'
-import {verifyToken} from './../middlewares/auth'
+import {verifyToken} from './../middlewares/userAuthentication'
 
 
 /// REQUEST ROUTES ///

@@ -1,43 +1,104 @@
 //import * as user_model from '../models/requestModel';
-import {client, pool} from '../config/dbCon'
-import {validate_req} from '../middlewares/lib'
-// import jwt from 'jsonwebtoken'
-import {jwtAuth} from './../middlewares/auth'
+import {client, pool} from '../config/dbConnect'
+import {validateRequest, validateEmail, hash} from '../middlewares/helperLibrary'
+import {jwtAuth} from './../middlewares/userAuthentication'
 
 exports.index = function(req, res) {
     res.send('NOT IMPLEMENTED: User Site Home Page');
 };
 
 // Handle User create on POST.
-exports.login = (req, res) => {
-    const user = {
-        id: 1,
-        utype: 'admin',
-        uemail: 'user@andela.com' ,
-        upassword: 'passward' ,
-        ufirstName: 'Fred',
-        ulastName: 'Edward',
-        uphone: '08025532383',
-        uaddress: 'Agungi, Lekki, Lagos',
-        ucreatedOn: '2018-12-27'
-    }
+exports.postLogin = (req, res) => {
+    const data = req.body;
+    const email = validateEmail(data.email, req, res) ;
+    const password = validateRequest(data.password, req, res) ;
+    const utype = validateRequest(data.utype, req, res) ;
 
-    jwtAuth(user, res);
-    /*
-    jwt.sign({user}, 'secretKey', { expiresIn: '30s'}, (err, token) => {
-        res.json({token});
-    });
-    */
+    const sql = `SELECT * FROM tbl_user WHERE uemail='${email}' AND upassword='${password}' AND utype='${utype}' ;`;
+
+    client.query(sql)
+        .then(result => {
+            if(result) { 
+            const user = {
+                id: 1,
+                type: utype,
+                email: email/*,
+                firstName: result.ufirstName,
+                lastName: result.ulastName,
+                phone: result.uphone,
+                address: result.uaddress,
+                createdOn: result.ucreatedOn*/
+            }
+            
+            console.log(`Login user record: ${result} \r\n JwtUser ${user} `);
+
+            jwtAuth(user, res);
+        }
+
+        })
+        .catch(err => {
+            console.log(err);
+            throw err;
+        });
+
 };
 
+
 // Handle User create on POST.
-exports.signup = function(req, res) {
-    res.send('NOT IMPLEMENTED: User Signup');
+exports.postSignup = function(req, res) {
+   // create new user objects
+   const data = req.body;
+   const firstName = validateRequest(data.firstName, req, res) ;
+   const lastName = validateRequest(data.lastName, req, res) ;
+   const phone = validateRequest(data.phone, req, res) ;
+   const address = validateRequest(data.address, req, res) ;
+   const email = validateEmail(data.email, req, res) ;
+   const password = validateRequest(data.password, req, res) ;
+   const password2 = validateRequest(data.password2, req, res) ;
+   
+   if(password !== password2 ){
+        return res.status(422).json({
+            message: `Invalid request. The input password(s) do not match`,
+            data:password
+        });
+    }
+    
+    if(!(validateEmail(email))){
+        return res.status(422).json({
+            message: `Invalid email address.`,
+            data:email
+        });
+    }
+
+    const utype = 'user'; // admin 
+    // Parameterized query
+    const text = `INSERT INTO tbl_user (utype, uemail, upassword, ufirstName, ulastName, uphone, uaddress )
+                    VALUES($1, $2, $3, $4, $5, $6, $7) RETURNING * `;
+    const values = [utype, email, password, firstName, lastName, phone, address];
+   
+   client.query(text, values)
+   .then(result => {
+       const newUser = result.rows[0];
+       console.log("\r\n\r\nCreating Object from controller" + JSON.stringify(newUser));
+
+       if(newUser) {
+        return  res.status(200).json({
+               message: `New user is created successfully `,
+               data:newUser
+           });
+       } else {
+           return  res.status(404).json({
+               message: `Could not create user `,
+               data:null
+           });
+       }
+   })
+   .catch(e => console.error(e.stack))
 };
         
 
 // Display list of all Users.
-exports.user_all = (req, res, next) => {
+exports.getUserAll = (req, res, next) => {
     const results = [];
     // SQL Query > Select Data
     const query = client.query('SELECT * FROM tbl_user ORDER BY id ASC;');
@@ -58,9 +119,9 @@ exports.user_all = (req, res, next) => {
 };
 
 // Display detail page for a specific User.
-exports.user_one = (req, res, next) => {
+exports.getUserOne = (req, res, next) => {
     const results = [];
-    const userId = validate_req(parseInt(req.params.userId), req, res );
+    const userId = validateRequest(parseInt(req.params.userId), req, res );
     if(!userId > 0){
         res.statusMessage = "Current request id is invalid. An integer value is expected";
         return res.status(422).json({
@@ -89,7 +150,7 @@ exports.user_one = (req, res, next) => {
 
 
 // Display User update form on PUT.
-exports.update_user = (req, res) => {
+exports.putUpdateUser = (req, res) => {
     jwt.verify(req.token, 'secretKey', (err, authData) => {
         if(err) {
             res.sendStatus(403);
