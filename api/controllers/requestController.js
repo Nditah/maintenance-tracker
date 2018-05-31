@@ -104,7 +104,7 @@ exports.getRequestUser = function(req, res, next) {
 // Handle Request create on POST.
 exports.postRequestCreate = function(req, res, next) {
     const data = req.body;
-    const userId = validateRequest(parseInt(data.user), req, res) ;
+    const userId = validateRequest(parseInt(data.userId), req, res) ;
     const subject = validateRequest(data.subject, req, res) ;
     const description = validateRequest(data.description, req, res) ;
     const status = validateRequest(data.status, req, res) ;

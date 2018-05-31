@@ -16,7 +16,6 @@ export function jwtAuth(user, res) {
         res.json({token});
     });
     */
-    console.log(token);
 }
 
 export function verifyToken(req, res, next) {

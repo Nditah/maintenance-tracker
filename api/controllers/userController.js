@@ -1,4 +1,3 @@
-//import * as user_model from '../models/requestModel';
 import {client, pool} from '../config/dbConnect'
 import {validateRequest, validateEmail, hash} from '../middlewares/helperLibrary'
 import {jwtAuth} from './../middlewares/userAuthentication'
@@ -12,9 +11,10 @@ exports.postLogin = (req, res) => {
     const data = req.body;
     const email = validateEmail(data.email, req, res) ;
     const password = validateRequest(data.password, req, res) ;
+    const pass = hash(password);
     const utype = validateRequest(data.utype, req, res) ;
 
-    const sql = `SELECT * FROM tbl_user WHERE uemail='${email}' AND upassword='${password}' AND utype='${utype}' ;`;
+    const sql = `SELECT * FROM tbl_user WHERE uemail='${email}' AND upassword='${pass}' AND utype='${utype}' ;`;
 
     client.query(sql)
         .then(result => {
