@@ -3,10 +3,19 @@ import jwt from 'jsonwebtoken'
 
 export function jwtAuth(user, res) {
     // sign with default (HMAC SHA256)
-    let token = jwt.sign(id, process.env.JWT_SECRET);
-    jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: JWT_EXPIRES }, (err, token) => {
-        res.json({ token });
+    jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES }, (err, token) => {
+        // res.json({ token });
+        return res.status(200).json({
+            message: `Authentication is successful `,
+            data:token
+        });
     });
+
+    /*
+    jwt.sign({user}, 'secretKey', { expiresIn: '30s'}, (err, token) => {
+        res.json({token});
+    });
+    */
     console.log(token);
 }
 

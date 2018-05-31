@@ -1,5 +1,5 @@
-import {client, pool} from '../config/dbCon'
-import {callback} from '../middlewares/lib'
+import {client, pool} from '../config/dbConnect'
+import {callback} from '../middlewares/helperLibrary'
 
 
 // Create new request in your database and return its id

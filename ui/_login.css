@@ -20,7 +20,7 @@
     background: #57B3F1;
 }
 
-form {
+#loginForm {
     display: inline-block;
     text-align: center;
 }

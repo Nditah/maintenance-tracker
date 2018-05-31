@@ -8,11 +8,14 @@
     "start": "nodemon api/app/starter.js",
     "test": "mocha api/test/*.js"
   },
-  "keywords": ["rest, api, node, express, es6, babel, postgresql"],
+  "keywords": [
+    "rest, api, node, express, es6, babel, postgresql"
+  ],
   "author": "Nditah Samweld <nditah@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
     "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "jsonwebtoken": "^8.2.1",

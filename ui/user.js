@@ -18,7 +18,7 @@ jQuery.each( [ "put", "delete" ], function( i, method ) {
 });
 
 
-const root = 'http://localhost:3000/api/v1';
+const url = 'http://localhost:3000/api/v1';
 
 function today() {
     return new Date().toJSON().slice(0, 10);
@@ -43,10 +43,19 @@ var	RequestsTable = [
 
 // 3. Fetch all the requests of a logged in user
 function request_user(userId) {
+	let token = "";
+	if(localStorage.getItem("userToken")){
+		// Get saved data from localStorage
+		token = localStorage.getItem("userToken");
+		// Get saved data from sessionStorage
+		//token = sessionStorage.getItem('userToken');
+	}
+	
+
 	$.ajax({
-		url: root +'/users/requests',
+		url: url +'/users/requests',
 		headers: {
-			'Authorization':'Basic xxxxxxxxxxxxx',
+			'Authorization':'Bearer '+ token,
 			'X_CSRF_TOKEN':'xxxxxxxxxxxxxxxxxxxx',
 			'Content-Type':'application/json',
 			'userId':userId
@@ -136,7 +145,7 @@ function getRequestDetails(request_Id) {
 		//RequestsTable.unshift(newRequest);
 		console.log(JSON.stringify(newRequest));
 	// Add record
-	$.post(root + "/users/requests", { newRequest },
+	$.post(url + "/users/requests", { newRequest },
 		function (data, status) {
 			console.log(data.message);
 			let feedback = "<div class='alert alert-success  alert-sm'>";

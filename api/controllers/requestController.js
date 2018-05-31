@@ -1,9 +1,9 @@
 
 //import * as model from '../models/requestModel';
 //import {create_request} from '../models/requestModel';
-import {client, pool} from '../config/dbCon'
-import {callback} from '../middlewares/lib'
-import {validate_req} from '../middlewares/lib'
+import {client, pool} from '../config/dbConnect'
+import {callback} from '../middlewares/helperLibrary'
+import {validateRequest} from '../middlewares/helperLibrary'
 
 function Requesto(userId, subject, description, status, priority) {
     this.userId = userId;
@@ -40,7 +40,7 @@ exports.request_all = function(req, res, next) {
 
 // Display detail page for a specific Request.
 exports.request_one = function(req, res, next) {
-    const request_id = validate_req(parseInt(req.params.id), req, res );
+    const request_id = validateRequest(parseInt(req.params.id), req, res );
     if(!request_id > 0){
         res.statusMessage = "Current request id is invalid. An integer value is expected";
         return res.status(422).json({
@@ -104,14 +104,11 @@ exports.request_user = function(req, res, next) {
 // Handle Request create on POST.
 exports.request_create = function(req, res, next) {
     const data = req.body;
-    const id = validate_req(parseInt(data.id), req, res) ;
-    const userId = validate_req(parseInt(data.user), req, res) ;
-    const subject = validate_req(data.subject, req, res) ;
-    const description = validate_req(data.description, req, res) ;
-    const status = validate_req(data.status, req, res) ;
-    const priority = validate_req(data.priority, req, res) ;
-
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    const userId = validateRequest(parseInt(data.user), req, res) ;
+    const subject = validateRequest(data.subject, req, res) ;
+    const description = validateRequest(data.description, req, res) ;
+    const status = validateRequest(data.status, req, res) ;
+    const priority = validateRequest(data.priority, req, res) ;
 
     const R = new Requesto(userId, subject, description, status, priority);
  
@@ -143,12 +140,12 @@ exports.request_create = function(req, res, next) {
 // Display Request update form on PUT.
 exports.request_update = function(req, res, next) {
     const data = req.body;
-    const id = validate_req(parseInt(data.id), req, res) ;
-    const userId = validate_req(parseInt(data.user), req, res) ;
-    const subject = validate_req(data.subject, req, res) ;
-    const description = validate_req(data.description, req, res) ;
-    const status = validate_req(data.status, req, res) ;
-    const priority = validate_req(data.priority, req, res) ;
+    const id = validateRequest(parseInt(data.id), req, res) ;
+    const userId = validateRequest(parseInt(data.user), req, res) ;
+    const subject = validateRequest(data.subject, req, res) ;
+    const description = validateRequest(data.description, req, res) ;
+    const status = validateRequest(data.status, req, res) ;
+    const priority = validateRequest(data.priority, req, res) ;
 
     if(!userId > 0){
         res.statusMessage = "Current request id is invalid. An integer value is expected";
