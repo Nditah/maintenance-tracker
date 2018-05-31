@@ -5,7 +5,7 @@
   "main": "server.js",
   "repository": "https://github.com/Nditah/maintenance-tracker.git",
   "scripts": {
-    "start": "node ./api/app/server.js",
+    "start": "node ./api/server.js",
     "test": "mocha ./api/test/*.js"
   },
   "keywords": [
