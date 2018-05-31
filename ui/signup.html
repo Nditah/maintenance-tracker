@@ -27,8 +27,8 @@ regarding repair or maintenance requests and monitor the status of their request
 
         <div class="col">
 
-            <form method="POST" action="http://localhost:3000/signup">
-                <p class="sm">Login with your email and password</p>
+            <div class='form' name='signupForm' >
+                <p class="sm">Please complete this form to signup for maintenance service tracking</p>
                 <input type="text" class="txt" name="firstName" id="firstName" placeholder="First Name" required>
                 <input type="text" class="txt" name="lastName" id="lastName" placeholder="Last Name" required>
                 <input type="text" class="txt" name="phone" id="phone" placeholder="Phone" required>
@@ -44,7 +44,7 @@ regarding repair or maintenance requests and monitor the status of their request
                 <input type="email" class="txt" name="email" id="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
                 <input type="password" class="txt" name="password" id="password" placeholder="Password" required />
                 <input type="password" class="txt" name="password2" id="password2" placeholder="Confirm Password" required />
-                <button type="submit" class="btn" value="Signup">Signup</button>
+                <button type="submit" class="btn" onclick="signup();">Signup</button>
                 <p>Already have an account? &nbsp; <a href="index.html"> Login</a></p>
             </form>
 

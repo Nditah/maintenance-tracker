@@ -2,7 +2,7 @@
 import {client, pool} from '../config/dbCon'
 import {validate_req} from '../middlewares/lib'
 // import jwt from 'jsonwebtoken'
-import jwtAuth from './../middlewares/auth'
+import {jwtAuth} from './../middlewares/auth'
 
 exports.index = function(req, res) {
     res.send('NOT IMPLEMENTED: User Site Home Page');

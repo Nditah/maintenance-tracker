@@ -3,8 +3,7 @@ import jwt from 'jsonwebtoken'
 
 export function jwtAuth(user, res) {
     // sign with default (HMAC SHA256)
-    let token = jwt.sign(id, process.env.JWT_SECRET);
-    jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: JWT_EXPIRES }, (err, token) => {
+    jwt.sign({ user }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRES }, (err, token) => {
         res.json({ token });
     });
     console.log(token);
