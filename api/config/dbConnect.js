@@ -1,11 +1,12 @@
 /*
-* 
-*
+* Database Connection file
+* Import PostgreSql Connector and Enviromental Variables
 */
 
 import env from 'dotenv'
 env.config();
 import pg from 'pg';
+import {hash} from './../middlewares/helperLibrary'
 // import { Client, Pool } from 'pg'
 
 const config = {
@@ -17,39 +18,34 @@ const config = {
     ssl:true
 };
 
-// console.log(config);
-
-// const client = new Client({ connectionString: process.env.DB_URI });
-
 const client = new pg.Client(config);
 client.connect( (err) => {
     if(err) {
         console.error('error connecting', err.stack);  
     } else {
-        console.log('connected')
-        // client.end()
+        console.log('DB client connected')
     }
 })
 
 const pool = new pg.Pool(config);
 pool.connect()
 .then(client => {
-    console.log('connected')
-    // client.release()
+    console.log('DB Pool connected')
 })
 .catch(err => console.error('error connecting', err.stack))
 .then( () => pool.end())
 
 
-function createDatabase() {
+const createDatabase = ()  => {
+    const password = hash('pass')
     const sql = `
 
         -- User table;
         DROP TABLE IF EXISTS tbl_user;
         CREATE TABLE tbl_user (
             id SERIAL PRIMARY KEY,
-            utype VARCHAR(20),
-            uemail VARCHAR(100) NOT NULL ,
+            utype VARCHAR(20) DEFAULT 'user',
+            uemail VARCHAR(100) NOT NULL UNIQUE,
             upassword VARCHAR(200) NOT NULL ,
             ufirstName VARCHAR(200),
             ulastName VARCHAR(200),
@@ -59,7 +55,7 @@ function createDatabase() {
         );
         
         INSERT INTO tbl_user (utype, uemail, upassword, ufirstName, ulastName, uphone, uaddress )
-            VALUES ('admin', 'admin@andela.com', 'pass', 'Scott', 'Tiger', '123-456-777', 'Upper Str.' );
+            VALUES ('admin', 'admin@andela.com', '${password}', 'Scott', 'Tiger', '123-456-777', 'Upper Str.' );
         
         
         -- Request table;
@@ -69,8 +65,8 @@ function createDatabase() {
             userId INTEGER NOT NULL ,
             rsubject VARCHAR (200) NOT NULL,
             rdescription VARCHAR(1000),
-            rstatus VARCHAR(20),
-            rpriority VARCHAR(20),
+            rstatus VARCHAR(20) DEFAULT 'pending',
+            rpriority VARCHAR(20) DEFAULT 'low',
             rcreatedOn DATE DEFAULT Now()
         );
         
@@ -106,14 +102,13 @@ function createDatabase() {
 
 }
 
+/// I run this once to create and seed my heroku db
 /*
 try{
     createDatabase();
 } catch (err) {
     console.log(err);
 }
-*/
+ */
 
-module.exports = { client, pool }
-
-
+export { client, pool };

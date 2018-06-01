@@ -7,7 +7,7 @@ export function jwtAuth(user, res) {
         // res.json({ token });
         return res.status(200).json({
             message: `Authentication is successful `,
-            data:token
+            data:{token: token, userInfo: user}
         });
     });
 
@@ -16,7 +16,6 @@ export function jwtAuth(user, res) {
         res.json({token});
     });
     */
-    console.log(token);
 }
 
 export function verifyToken(req, res, next) {

@@ -52,7 +52,7 @@ input.search:focus {
 */
 button.btn {
     border: 0;
-    display:block;
+    display:inline-block ;
     padding:1em 3em;
     background:#A5F883;
     color:#003A61;
@@ -214,7 +214,6 @@ a.request:active {
 
 
 
-/* https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_switch  */
 
 .switch {
   position: relative;
@@ -274,4 +273,44 @@ input:checked + .slider:before {
 
 .requestForm{
     width: inherit;
+}
+
+@ /* 
+##Device = Most of the Smartphones Mobiles (Portrait)
+##Screen = B/w 320px to 479px
+*/
+
+@media (min-width: 200px) and (max-width: 600px) {
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.col {
+    padding: .1em .5em;
+    width: 100%;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 1em;
+}
+
+input, textarea {
+    width: inherit;
+}
+
+select {
+    width: inherit;
+}
+
+.txt {
+    width: inherit;
+}
+
+.form {
+    width:inherit;
+    font-size: 0.9em;
+    }
 }

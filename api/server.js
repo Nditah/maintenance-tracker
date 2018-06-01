@@ -8,10 +8,8 @@ import cors from 'cors'
 import env from 'dotenv'
 import bodyParser from 'body-parser'
 import morgan from 'morgan'
-// import '@babel/polyfill'
 
 /// import routes  ///
-
 
 import userRoute from './routes/userRoute'
 import requestRoute from './routes/requestRoute'
@@ -33,8 +31,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/api/v1', userRoute);
-app.use('/api/v1', requestRoute); 
+ app.use('/api/v1', userRoute);
+ app.use('/api/v1', requestRoute); 
 
 // responds when a GET request is made to the homepage
 app.get('/', function (req, res) {
