@@ -13,7 +13,6 @@ regarding repair or maintenance requests and monitor the status of their request
 
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="request.css">
-    <link href="./css/font-awesome.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -88,8 +87,8 @@ regarding repair or maintenance requests and monitor the status of their request
             <div class="col" id="col2">
                 <p class="sm">View / Update Maintenance Request Status &nbsp; </p>
 
-                <form name="adminForm" id="adminForm" method="POST" >
-                    <input type="hidden" class="txt" name="hidden_id" id="hidden_id"  readonly />
+                <form name="adminForm" id="adminForm" class="form" method="POST" >
+                    <input type="hidden" class="txt" name="hiddenId" id="hiddenId"  readonly />
 										
                         <table class="tblRequest" width="100%"> 
                         <tr><th style="width:15%; align-content:left;">Status: </th><td id="requestStatus"></td></tr>
@@ -111,7 +110,7 @@ regarding repair or maintenance requests and monitor the status of their request
                         <option value="resolve">Resolve</option>
                     </select>
 										
-                    <button type="button" type="submit" class="btn" >Save</button>
+                    <button type="button" type="submit" class="btn" onclick="updateRequest();" >Save</button>
                 </form>
             </div>
         </div>

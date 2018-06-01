@@ -2,16 +2,12 @@ import express from 'express'
 const userRoute = express.Router();
 
 // Require controller modules.
-import {index} from '../controllers/userController'
 import {postLogin, postSignup} from '../controllers/userController'
 import {getUserOne, getUserAll} from '../controllers/userController'
 import {putUpdateUser} from '../controllers/userController'
 import {verifyToken} from './../middlewares/userAuthentication'
 
 /// USER ROUTES /// 
-
-// GET user home page.
-userRoute.get('/', index);
 
 // auth/login Login a user
 userRoute.post('/auth/login', postLogin);

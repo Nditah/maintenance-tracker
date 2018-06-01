@@ -31,8 +31,8 @@ app.use(function(req, res, next) {
   next();
 });
 
-app.use('/api/v1', userRoute);
-app.use('/api/v1', requestRoute); 
+ app.use('/api/v1', userRoute);
+ app.use('/api/v1', requestRoute); 
 
 // responds when a GET request is made to the homepage
 app.get('/', function (req, res) {

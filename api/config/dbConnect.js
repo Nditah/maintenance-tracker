@@ -103,12 +103,12 @@ const createDatabase = ()  => {
 }
 
 /// I run this once to create and seed my heroku db
-/* */
+/*
 try{
     createDatabase();
 } catch (err) {
     console.log(err);
 }
+ */
 
-
-export default { client, pool };
+export { client, pool };

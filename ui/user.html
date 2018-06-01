@@ -12,7 +12,7 @@ regarding repair or maintenance requests and monitor the status of their request
     <link rel="icon" href="./images/logo.png" sizes="16x16" type="image/png">
 
    <link rel="stylesheet" href="./style.css">
-    <link rel="stylesheet" href="request.css"> -->
+    <link rel="stylesheet" href="request.css"> 
 </head>
 
 <body>
@@ -84,21 +84,24 @@ regarding repair or maintenance requests and monitor the status of their request
             <div class="col">
                 <p class="feedback" id="feedback">Create a new repair / maintenance request or click on the record on the table to view details &nbsp; </p>
 
-                <form name="requestForm" id="requestForm" class="requestForm" method="POST">
-                    <!-- <input type="text" class="txt" name="requestStatus" id="requestStatus" placeholder="Request Status"> -->
+                <form name="requestForm" id="requestForm" class="requestForm form" method="POST">
+                    <input type="hidden" class="txt" name="requestStatus" id="requestStatus" placeholder="Request Status"> 
                     <input type="text" class="txt" name="requestSubject" id="requestSubject" placeholder="Request Subject" required>
+                    <input type="hidden" class="txt" name="requestId" id="requestId" value="1" />
                     <input type="hidden" class="txt" name="userId" id="userId" value="1" />
                     <textarea class="txt" name="requestDescription" id="requestDescription" placeholder="Request Description" required></textarea>
                     <select class="txt" name="requestPriority" id="requestPriority" required>
                         <option value="" disabled selected>Select request priority</option>
-                        <option value="Low">Low</option>
-                        <option value="Normal">Normal</option>
-                        <option value="High">High</option>
+                        <option value="low">Low</option>
+                        <option value="normal">Normal</option>
+                        <option value="high">High</option>
                     </select>
-                    <button type="button" class="btn" onclick="createRequest();">Submit</button>
+                    <p> <button type="button" class="btn" onclick="createRequest();">Create</button>
+                        <button type="button" class="btn" onclick="updateRequest();">Update</button> </p>
+                    
                 </form>
-
             </div>
+
         </div>
     </section>
 

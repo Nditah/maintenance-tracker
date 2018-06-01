@@ -24,12 +24,14 @@ regarding repair or maintenance requests and monitor the status of their request
 
         <div class="container color-light">
             <div class="col">
-                <div class="form" id='loginForm' >
-                    <p class="sm">Login with your email and password</p>
-                    <input type="email" class="txt" name="email" id="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required />
+
+                <div class="form" id='loginForm' name='loginForm' >
+                    <p class="feedback" style="padding:8px;">Login with your email and password</p>
+                    <input type="email" class="txt" name="email" id="email" placeholder="Email"  required />
+                    <!-- pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" -->
                     <input type="password" class="txt" name="password" id="password" placeholder="Password" required>
                     <select class="txt" name="utype" id="utype">
-                        <option value="" disabled selected>Access Type</option>
+                        <option value="" disabled selected>User role ?</option>
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
                     </select> 
@@ -37,6 +39,8 @@ regarding repair or maintenance requests and monitor the status of their request
                     <p>Don't have an account yet? &nbsp; <a href="signup.html"> Signup</a></p>
 
                 </div>
+                <!-- form -->
+
             </div>
         </div>
     </section>

@@ -11,62 +11,53 @@ regarding repair or maintenance requests and monitor the status of their request
     <meta name="author" content="Nditah">
     <link rel="icon" href="./images/logo.png" sizes="16x16" type="image/png">
 
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./login.css">
 </head>
 <body>
     <section>
-            <div class="container color-dark">
-                <div class="col">
-                    <h1> :: MAINTENANCE TRACKER :: </h1>
-                </div>
+        <div class="container color-dark">
+            <div class="col">
+                <h1> :: MAINTENANCE TRACKER :: </h1>
             </div>
+        </div>
 
-    <div class="container color-light">
+        <div class="container color-light">
+            <div class="col">
 
-
-        <div class="col">
-
-            <div class='form' name='signupForm' >
-                <p class="sm">Please complete this form to signup for maintenance service tracking</p>
-                <input type="text" class="txt" name="firstName" id="firstName" placeholder="First Name" required>
-                <input type="text" class="txt" name="lastName" id="lastName" placeholder="Last Name" required>
-                <input type="text" class="txt" name="phone" id="phone" placeholder="Phone" required>
+            <div class='form' id='signupForm' >
+                <p class="feedback" style="padding:8px;" >Please complete this form to signup for maintenance service tracking</p>
+                <input type="text" class="txt" name="firstName" id="firstName" placeholder="First Name" required />
+                <input type="text" class="txt" name="lastName" id="lastName" placeholder="Last Name" required />
+                <input type="text" class="txt numbersOnly" name="phone" id="phone" placeholder="Phone" required />
                 <textarea class="txt" name="address" id="address" placeholder="Address" required></textarea>
-								<!--
-                <select class="txt" name="service" id="service">
-                    <option value="" disabled selected>Service Tier</option>
-                    <option value="Basic">Basic Services</option>
-                    <option value="Standard">Standard Services</option>
-                    <option value="Premium">Premium Services</option>
-                </select> 
-								-->
-                <input type="email" class="txt" name="email" id="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
+                <input type="email" class="txt" name="email" id="email" placeholder="Email" />
                 <input type="password" class="txt" name="password" id="password" placeholder="Password" required />
                 <input type="password" class="txt" name="password2" id="password2" placeholder="Confirm Password" required />
                 <button type="submit" class="btn" onclick="signup();">Signup</button>
                 <p>Already have an account? &nbsp; <a href="index.html"> Login</a></p>
-            </form>
+            </div>
 
+                <!-- form -->
+
+            </div>
         </div>
-
-
-    </div>
     </section>
-    <script src="jquery.min.js"></script>
-    <script scr="script.js"></script>
+
+    <!-- jQuery library -->
+    <!-- <script src="jquery.min.js"></script> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Activity Script -->
+    <script src="auth.js"></script>
     <script>
-
         $(document).ready(function () {
-
+            console.log("Script is loaded...");
             $('.numbersOnly').keyup(function () {
                 this.value = this.value.replace(/[^0-9\.]/g, '');
             })
-
         });
-    
     </script>
-    
 </body>
 
-</html>
+</html> 
